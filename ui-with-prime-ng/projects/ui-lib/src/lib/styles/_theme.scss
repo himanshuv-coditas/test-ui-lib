@@ -1,0 +1,19 @@
+:root {
+  --background: #fff;
+  --text-color: #000;
+  --primary: #007bff;
+}
+
+.dark-theme {
+  --background: #121212;
+  --text-color: #fff;
+  --primary: #1e90ff;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-color);
+}
+
+// @import 'primeng/resources/themes/lara-dark/variables';
+// @import 'primeng/resources/themes/lara-dark/theme';

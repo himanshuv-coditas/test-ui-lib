@@ -1,0 +1,39 @@
+<!-- <p-sidebar
+  [(visible)]="visibleSidebar"
+  position="left"
+  [baseZIndex]="10000"
+  [modal]="false"
+  styleClass="w-13rem"
+>
+  <h3 class="text-white mb-3">Components</h3>
+  <ul class="list-none p-0 m-0 text-white">
+    @for (item of sidebarItems; track $index) {
+    <li class="p-2 hover:bg-gray-700 rounded">
+      <i [ngClass]="item.icon" class="mr-2"></i>{{ item.label }}
+    </li>
+    }
+  </ul>
+</p-sidebar>
+
+
+Pull tab shown when sidebar is hidden
+<button
+  *ngIf="!visibleSidebar"
+  class="sidebar-pull-tab"
+  pi pi-moon
+  (click)="visibleSidebar = true"
+>
+  <i class="pi pi-angle-right"></i>
+</button> -->
+
+<div class="card flex justify-content-center">
+  <p-sidebar [(visible)]="visibleSidebar" styleClass="w-13rem">
+    <ng-template pTemplate="header">
+      <span class="font-semibold text-xl">Sidebar</span>
+    </ng-template>
+    @for (item of sidebarItems; track $index) {
+      <p>{{item.label}}</p>
+    }
+  </p-sidebar>
+  <p-button (onClick)="visibleSidebar = true" icon="pi pi-arrow-right" />
+</div>

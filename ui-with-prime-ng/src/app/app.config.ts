@@ -12,7 +12,7 @@ export const appConfig: ApplicationConfig = {
     provideNoopAnimations(),
     providePrimeNG({
       theme: {
-          preset: Aura
+          preset: getCurrentPreset()
       }
   }),
   provideRouter(routes)]
