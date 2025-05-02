@@ -1,4 +1,4 @@
-:root {
+.light-theme {
   --background: #fff;
   --text-color: #000;
   --primary: #007bff;
@@ -10,10 +10,10 @@
   --primary: #1e90ff;
 }
 
-body {
-  background-color: var(--background);
-  color: var(--text-color);
+body,
+.p-drawer,
+.p-toolbar-custom .p-toolbar {
+  background-color: var(--background) !important;
+  color: var(--text-color) !important;
 }
 
-// @import 'primeng/resources/themes/lara-dark/variables';
-// @import 'primeng/resources/themes/lara-dark/theme';

@@ -4,3 +4,7 @@
 // @import '/src/app/theme/custom-theme.scss'; // Custom typography styles
 
 @import 'index';
+:root {
+  --primary-bg: #fff;
+  --primary-text: #222;
+}

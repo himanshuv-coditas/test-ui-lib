@@ -1,14 +1,13 @@
 @import '../../styles/variables.scss';
-.sidebar-pull-tab {
-  position: fixed;
-  top: 0px;
-  left: 0;
-  width: 30px;
-  height: 30px;
-  border-radius: 0 4px 4px 0;
-  background-color: $success-color;
-  color: white;
-  border: none;
-  z-index: 9999;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+.sidebar-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0px 10px;
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    background-color: $light-success-color;
+  }
 }

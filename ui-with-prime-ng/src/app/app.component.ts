@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarModule } from 'primeng/sidebar';
 import { HeaderComponent } from "./shared/layouts/header/header.component";
 import { SidebarComponent } from './shared/layouts/sidebar/sidebar.component';
-
+import { ThemeService } from './shared/services/customtheme.service';
 
 @Component({
   selector: 'app-root',
@@ -13,15 +13,8 @@ import { SidebarComponent } from './shared/layouts/sidebar/sidebar.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  private isDark = false;
+  constructor(private themeService: ThemeService) {}
   public visibleSidebar = false;
   title = 'ui-with-prime-ng';
-  themeOptions: any[] = [
-    { label: 'Light', command: () => this.setTheme('light') },
-    { label: 'Dark', command: () => this.setTheme('dark') },
-    { label: 'System', command: () => this.setTheme('system') }
-  ];
-  setTheme(mode: string) {
-    document.documentElement.setAttribute('data-theme', mode);
-    localStorage.setItem('theme', mode);
-  }
 }

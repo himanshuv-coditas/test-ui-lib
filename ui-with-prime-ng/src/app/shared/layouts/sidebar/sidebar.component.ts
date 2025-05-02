@@ -14,11 +14,11 @@ import { App } from '../../../../../projects/ui-lib/src/lib/types/app';
 })
 export class SidebarComponent {
   public sidebarItems: App.SidebarItem[] = [
-    { label: 'Colors', icon: 'pi pi-palette', routerLink: '/colors' },
-    { label: 'Typography', icon: 'pi pi-font', routerLink: '/typography' },
-    { label: 'Buttons', icon: 'pi pi-circle', routerLink: '/buttons' },
-    { label: 'Inputs', icon: 'pi pi-pencil', routerLink: '/inputs' },
-    { label: 'Cards', icon: 'pi pi-clone', routerLink: '/cards' },
-    { label: 'Navigation', icon: 'pi pi-bars', routerLink: '/navigation' },
+    { label: 'Colors', icon: 'pi-palette', routerLink: '/colors' },
+    { label: 'Typography', icon: 'pi-align-left', routerLink: '/typography' },
+    { label: 'Buttons', icon: 'pi-circle', routerLink: '/buttons' },
+    { label: 'Inputs', icon: 'pi-pencil', routerLink: '/inputs' },
+    { label: 'Cards', icon: 'pi-clone', routerLink: '/cards' },
+    { label: 'Navigation', icon: 'pi-bars', routerLink: '/navigation' },
   ];
 }
