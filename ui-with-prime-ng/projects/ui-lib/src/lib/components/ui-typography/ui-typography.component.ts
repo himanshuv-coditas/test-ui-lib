@@ -13,6 +13,6 @@ export class UiTypographyComponent {
   @Input() variant: string = '';
   @Input() color: string = '';
   @Input() label: string = '';
-  @Input() background: TypographyBackground = TypographyBackground.primary;
+  @Input() background: string = '';
   public readonly typography = TypographyVariant;
 }
