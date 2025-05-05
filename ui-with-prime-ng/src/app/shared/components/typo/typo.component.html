@@ -1,4 +1,4 @@
-<div class="color-container">
+<div class="typography-container">
   <!-- Typepograph Variants  -->
   <lib-card [cardType]="cardTypes.advanced" [header]="'Typography Variants'">
     <div footer class="footer">
@@ -55,6 +55,55 @@
     </div>
   </lib-card>
 
+    <!-- Typepograph Background  -->
+    <lib-card [cardType]="cardTypes.advanced" [header]="'Typography Background'">
+      <div footer class="footer">
+        <lib-typography
+          [variant]="typography.h1"
+          [tag]="typography.h1"
+          [label]="typographyBackground.primary"
+          [background]="typographyBackground.primary"
+        ></lib-typography>
+        <lib-typography
+          [variant]="typography.h2"
+          [tag]="typography.h2"
+          [label]="typographyBackground.secondary"
+          [background]="typographyBackground.secondary"
+        ></lib-typography>
+        <lib-typography
+          [variant]="typography.h1"
+          [tag]="typography.h1"
+          [label]="typographyBackground.success"
+          [background]="typographyBackground.success"
+        ></lib-typography>
+        <lib-typography
+          [variant]="typography.h1"
+          [tag]="typography.h1"
+          [label]="typographyBackground.warning"
+          [background]="typographyBackground.warning"
+        ></lib-typography>
+        <lib-typography
+          [variant]="typography.h1"
+          [tag]="typography.h1"
+          [label]="typographyBackground.info"
+          [background]="typographyBackground.info"
+        ></lib-typography>
+        <lib-typography
+          [variant]="typography.h1"
+          [tag]="typography.h1"
+          [label]="typographyBackground.grayLight"
+          [background]="typographyBackground.grayLight"
+        ></lib-typography>
+        <lib-typography
+          [variant]="typography.h1"
+          [tag]="typography.h1"
+          [label]="typographyBackground.grayDark"
+          [color]="typographyColor.textWhite"
+          [background]="typographyBackground.grayDark"
+        ></lib-typography>
+      </div>
+    </lib-card>
+
   <!-- Typepograph Colors  -->
   <lib-card [cardType]="cardTypes.advanced" [header]="'Typography Colors'">
     <div footer class="footer">
@@ -108,55 +157,6 @@
         [background]="typographyBackground.grayDark"
       ></lib-typography>
 
-    </div>
-  </lib-card>
-
-  <!-- Typepograph Background  -->
-  <lib-card [cardType]="cardTypes.advanced" [header]="'Typography Background'">
-    <div footer class="footer">
-      <lib-typography
-        [variant]="typography.h1"
-        [tag]="typography.h1"
-        [label]="typographyBackground.primary"
-        [background]="typographyBackground.primary"
-      ></lib-typography>
-      <lib-typography
-        [variant]="typography.h2"
-        [tag]="typography.h2"
-        [label]="typographyBackground.secondary"
-        [background]="typographyBackground.secondary"
-      ></lib-typography>
-      <lib-typography
-        [variant]="typography.h1"
-        [tag]="typography.h1"
-        [label]="typographyBackground.success"
-        [background]="typographyBackground.success"
-      ></lib-typography>
-      <lib-typography
-        [variant]="typography.h1"
-        [tag]="typography.h1"
-        [label]="typographyBackground.warning"
-        [background]="typographyBackground.warning"
-      ></lib-typography>
-      <lib-typography
-        [variant]="typography.h1"
-        [tag]="typography.h1"
-        [label]="typographyBackground.info"
-        [background]="typographyBackground.info"
-      ></lib-typography>
-      <lib-typography
-        [variant]="typography.h1"
-        [tag]="typography.h1"
-        [label]="typographyBackground.grayLight"
-        [background]="typographyBackground.grayLight"
-      ></lib-typography>
-      <lib-typography
-        [variant]="typography.h1"
-        [tag]="typography.h1"
-        [label]="typographyBackground.grayDark"
-        [color]="typographyColor.textWhite"
-        [background]="typographyBackground.grayDark"
-      ></lib-typography>
     </div>
   </lib-card>
 </div>
