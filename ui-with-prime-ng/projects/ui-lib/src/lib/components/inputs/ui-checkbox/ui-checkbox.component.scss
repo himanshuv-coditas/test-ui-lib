@@ -1,0 +1,6 @@
+:host ::ng-deep .p-toggleswitch {
+  .p-toggleswitch-slider {
+    background-color: #d1d5db; // gray when unchecked
+    transition: background-color 0.3s ease;
+  }
+}

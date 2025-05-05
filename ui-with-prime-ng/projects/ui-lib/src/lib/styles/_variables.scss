@@ -1,15 +1,40 @@
-// Colors
-$primary-color: #007bff;
+// ------------------------------
+// Color Variables
+// ------------------------------
+
+// Primary Palette
+$primary-color: #ffffff;
+$primary-light: #66b2ff;
+$primary-dark: #0056b3;
+
+// Secondary Palette
 $secondary-color: #6c757d;
+$secondary-light: #a6aeb5;
+$secondary-dark: #494f54;
+
+// Success Palette
 $success-color: #10b981;
 $light-success-color: #9fd3b7;
+$success-dark: #047857;
+
+// Danger Palette
 $danger-color: #dc3545;
+$danger-light: #f397a1;
+$danger-dark: #a71d2a;
+
+// Warning Palette
+$warning-color: #ffc107;
+$warning-light: #ffe082;
+$warning-dark: #c79100;
+
+// Info Palette
+$info-color: #17a2b8;
+$info-light: #5bd3e7;
+$info-dark: #0f6674;
+
+// Neutral Colors
+$white-color: #ffffff;
 $black-color: #000000;
-
-// Spacing
-$spacing-unit: 1rem;
-
-// Breakpoints
-$breakpoint-sm: 576px;
-$breakpoint-md: 768px;
-$breakpoint-lg: 992px;
+$gray-light: #f8f9fa;
+$gray-medium: #dee2e6;
+$gray-dark: #343a40;

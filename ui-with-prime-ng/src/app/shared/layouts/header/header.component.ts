@@ -7,5 +7,5 @@ import { HeaderComponent as UiHeaderComponent } from '../../../../../projects/ui
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-
+  public headerTitle = 'Design System';
 }

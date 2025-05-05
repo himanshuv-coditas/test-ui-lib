@@ -1,5 +1,10 @@
 <div class="button-container">
-  <p-button class="button">
-    <span class="button-text">Button</span>
-  </p-button>
+  <p-button
+    [label]="label | titlecase"
+    [severity]="severity"
+    [raised]="raised"
+    [size]="size"
+    [disabled]="disabled"
+    styleClass="p-button-primary"
+  ></p-button>
 </div>

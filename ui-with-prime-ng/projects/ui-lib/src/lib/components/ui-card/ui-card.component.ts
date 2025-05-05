@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { CardTypes } from './../../types/app';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { CardModule } from 'primeng/card';
 
 @Component({
@@ -8,5 +9,12 @@ import { CardModule } from 'primeng/card';
   styleUrl: './ui-card.component.scss'
 })
 export class UiCardComponent {
+  @Input() cardType: CardTypes = CardTypes.basic;
+  @Input() header: string = '';
+  @Input() subHeader: string = '';
+  public readonly cardTypes = CardTypes;
 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.warn(this.header)
+  }
 }

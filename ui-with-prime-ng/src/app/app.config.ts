@@ -1,9 +1,9 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
 import { routes } from './app.routes';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import MyPreset from '../assets/theme/custom-preset';
 
 
 export const appConfig: ApplicationConfig = {
@@ -12,7 +12,10 @@ export const appConfig: ApplicationConfig = {
     provideNoopAnimations(),
     providePrimeNG({
       theme: {
-          preset: Aura
+          preset: MyPreset,
+          options: {
+            darkModeSelector: '.dark-theme'
+          }
       }
   }),
   provideRouter(routes)]

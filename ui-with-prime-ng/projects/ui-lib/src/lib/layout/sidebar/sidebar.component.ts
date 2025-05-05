@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { App } from '../../types/app';
+import { SidebarItem } from '../../types/app';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -13,5 +13,5 @@ import { RouterLink } from '@angular/router';
 })
 export class SidebarComponent {
   public visibleSidebar: boolean = false;
-  @Input() sidebarItems: App.SidebarItem[] = [];
+  @Input() sidebarItems: SidebarItem[] = [];
 }

@@ -1,0 +1,165 @@
+<div class="form-fields-container">
+  <!-- Inputs  -->
+  <lib-card
+    [cardType]="cardTypes.advanced"
+    [header]="'Input'"
+  >
+    <div footer class="footer">
+      <lib-form-field
+        [label]="inputTypes.text"
+        [fieldType]="fieldTypes.input"
+        [subType]="inputTypes.text"
+        [placeholder]="inputTypes.text"
+      ></lib-form-field>
+      <lib-form-field
+        [label]="inputTypes.email"
+        [fieldType]="fieldTypes.input"
+        [subType]="inputTypes.email"
+        [placeholder]="inputTypes.email"
+      ></lib-form-field>
+      <lib-form-field
+        [label]="inputTypes.password"
+        [fieldType]="fieldTypes.input"
+        [subType]="inputTypes.password"
+        [placeholder]="inputTypes.password"
+      ></lib-form-field>
+      <lib-form-field
+        [label]="inputTypes.number"
+        [fieldType]="fieldTypes.input"
+        [subType]="inputTypes.number"
+        [placeholder]="inputTypes.number"
+      ></lib-form-field>
+    </div>
+  </lib-card>
+
+  <!-- Checkbox  -->
+  <lib-card
+    [cardType]="cardTypes.advanced"
+    [header]="'Checkbox'"
+  >
+    <div footer class="footer checkbox-container">
+      <lib-form-field
+        [checkboxStyle]="checkboxStyle.box"
+        [fieldType]="fieldTypes.checkbox"
+        [label]="fieldTypes.checkbox"
+      ></lib-form-field>
+      <lib-form-field
+        [checkboxStyle]="checkboxStyle.switch"
+        [fieldType]="fieldTypes.checkbox"
+        [label]="fieldTypes.checkbox"
+      ></lib-form-field>
+      <lib-form-field
+        [checkboxStyle]="checkboxStyle.disabled"
+        [fieldType]="fieldTypes.checkbox"
+        [label]="fieldTypes.checkbox"
+      ></lib-form-field>
+      <!-- <lib-form-field
+        [fieldType]="fieldTypes.checkbox"
+        [label]="fieldTypes.checkbox"
+        [size]="size.small"
+      ></lib-form-field>
+      <lib-form-field
+        [size]="size.medium"
+        [fieldType]="fieldTypes.checkbox"
+        [label]="fieldTypes.checkbox"
+      ></lib-form-field>
+      <lib-form-field
+        [size]="size.large"
+        [fieldType]="fieldTypes.checkbox"
+        [label]="fieldTypes.checkbox"
+      ></lib-form-field> -->
+    </div>
+  </lib-card>
+
+  <!-- Radio  -->
+  <lib-card
+    [cardType]="cardTypes.advanced"
+    [header]="'Radio'"
+  >
+    <div footer class="footer radio-container">
+      <lib-form-field
+        [options]="options"
+        [radioStyle]="radioStyle.vertical"
+        [fieldType]="fieldTypes.radio"
+        [label]="fieldTypes.radio"
+      ></lib-form-field>
+      <lib-form-field
+        [options]="options"
+        [radioStyle]="radioStyle.horizontal"
+        [fieldType]="fieldTypes.radio"
+        [label]="fieldTypes.radio"
+      ></lib-form-field>
+      <lib-form-field
+        [options]="options"
+        [radioStyle]="radioStyle.disabled"
+        [fieldType]="fieldTypes.radio"
+        [label]="fieldTypes.radio"
+      ></lib-form-field>
+    </div>
+  </lib-card>
+
+  <!-- Select  -->
+  <lib-card
+    [cardType]="cardTypes.advanced"
+    [header]="'Select'"
+  >
+    <div footer class="footer select-container">
+      <!-- Basic Select -->
+      <lib-form-field
+        [fieldType]="fieldTypes.select"
+        [label]="fieldTypes.select"
+        [options]="options"
+        [selectStyle]="selectStyle.basic"
+        [placeholder]="selectPlaceholder"
+      ></lib-form-field>
+      <!-- Checkmark Select -->
+      <lib-form-field
+        [fieldType]="fieldTypes.select"
+        [label]="fieldTypes.select"
+        [options]="options"
+        [selectStyle]="selectStyle.checkmark"
+        [placeholder]="selectPlaceholder"
+      ></lib-form-field>
+      <!-- Editable Select -->
+      <lib-form-field
+        [fieldType]="fieldTypes.select"
+        [label]="fieldTypes.select"
+        [options]="options"
+        [selectStyle]="selectStyle.editable"
+        [placeholder]="selectPlaceholder"
+      ></lib-form-field>
+      <!-- Filter Select -->
+      <lib-form-field
+        [fieldType]="fieldTypes.select"
+        [label]="fieldTypes.select"
+        [options]="options"
+        [selectStyle]="selectStyle.filter"
+        [placeholder]="selectPlaceholder"
+      ></lib-form-field>
+      <!-- Clearable Select -->
+      <lib-form-field
+        [fieldType]="fieldTypes.select"
+        [label]="fieldTypes.select"
+        [options]="options"
+        [selectStyle]="selectStyle.clearable"
+        [placeholder]="selectPlaceholder"
+      ></lib-form-field>
+      <!-- Multiple Select -->
+      <lib-form-field
+        [fieldType]="fieldTypes.select"
+        [label]="fieldTypes.select"
+        [options]="options"
+        [selectStyle]="selectStyle.multiple"
+        [placeholder]="selectPlaceholder"
+      ></lib-form-field>
+      <!-- Disabled Select -->
+      <lib-form-field
+        [fieldType]="fieldTypes.select"
+        [label]="fieldTypes.select"
+        [options]="options"
+        [selectStyle]="selectStyle.disabled"
+        [placeholder]="selectPlaceholder"
+      ></lib-form-field>
+    </div>
+  </lib-card>
+</div>

@@ -1,8 +1,48 @@
 <div class="button-container">
-  <h1>Button</h1>
-  <p>
-    Buttons are native button elements enhanced with Design styling and ink
-    ripples.
-  </p>
-  <lib-button></lib-button>
+  <!-- Button Variants -->
+  <lib-card
+    [cardType]="cardTypes.advanced"
+    [header]="btnVariantHeader"
+    [subHeader]="btnVariantSubHeader"
+  >
+    <div footer class="footer">
+      @for (btnVariant of btnVariants; track btnVariant; let i = $index) {
+      <lib-button
+        [severity]="buttonSeverity[i]"
+        [label]="btnVariant"
+      ></lib-button>
+      }
+    </div>
+  </lib-card>
+
+  <!-- Button Size -->
+  <lib-card
+    [cardType]="cardTypes.advanced"
+    [header]="btnSizeHeader"
+    [subHeader]="btnSizeSubHeader"
+  >
+    <div footer class="footer">
+      @for (buttonSize of buttonSizes; track buttonSizes; let i = $index) {
+      <lib-button [severity]="buttonSeverity[1]" [size]="buttonSize" [label]="btnSizeLabel[i]"></lib-button>
+      }
+    </div>
+  </lib-card>
+
+  <!-- Button State -->
+  <lib-card
+    [cardType]="cardTypes.advanced"
+    [header]="btnSizeHeader"
+    [subHeader]="btnSizeSubHeader"
+  >
+    <div footer class="footer">
+      @for (state of btnStates; track btnState; let i = $index) {
+      <lib-button
+        [disabled]="state === btnState.disabled"
+        [label]="btnStateLabel[i]"
+        [raised]="state === btnState.raised"
+        [severity]="buttonSeverity[1]"
+      ></lib-button>
+      }
+    </div>
+  </lib-card>
 </div>

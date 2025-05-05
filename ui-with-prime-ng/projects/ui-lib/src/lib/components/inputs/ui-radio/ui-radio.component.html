@@ -1,0 +1,15 @@
+<div [ngClass]="radioStyle" class="radio-container">
+  <label class="type-label">{{radioStyle | titlecase}} Radio</label>
+  <ng-container *ngFor="let opt of options">
+    <div class="flex items-center gap-2">
+      <p-radioButton
+        name="radioGroup"
+        [value]="opt.value"
+        [(ngModel)]="radioValue"
+        [inputId]="opt.label"
+        [disabled]="radioStyle === radioLayout.disabled"
+      ></p-radioButton>
+      <label [for]="opt.label">{{ opt.label }}</label>
+    </div>
+  </ng-container>
+</div>

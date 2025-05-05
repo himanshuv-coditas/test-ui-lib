@@ -1,1 +1,52 @@
-<lib-card></lib-card>
+<div class="card-container">
+  <div class="basic-card">
+    <h3>Basic</h3>
+    <p>
+      A simple Card is created with a header property along with the content as
+      children.
+    </p>
+    <!-- Basic Card -->
+    <lib-card [cardType]="cardTypes.basic" [header]="basedCardHeader">
+      <p class="m-0">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
+        consequuntur error repudiandae numquam deserunt quisquam repellat libero
+        asperiores earum nam nobis, culpa ratione quam perferendis esse,
+        cupiditate neque quas!
+      </p>
+    </lib-card>
+  </div>
+  <div class="advance-card">
+    <h3>Advanced</h3>
+    <p>
+      Card content can be customized further with subHeader, header. Content and
+      footer properties can be added dynamically.
+    </p>
+    <!-- Advanced Card -->
+    <lib-card
+      [cardType]="cardTypes.advanced"
+      [header]="advancedCardHeader"
+      [subHeader]="advancedCardSubHeader"
+    >
+    <div content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
+        consequuntur error repudiandae numquam deserunt quisquam repellat libero
+        asperiores earum nam nobis, culpa ratione quam perferendis esse,
+        cupiditate neque quas!
+      </p>
+    </div>
+      <div footer>
+        <div class="flex gap-4 mt-1">
+          <p-button
+            icon="pi pi-times"
+            label="Cancel"
+            severity="secondary"
+            [outlined]="true"
+            styleClass="w-full"
+          />
+          <p-button icon="pi pi-check" label="Save" styleClass="w-full" />
+        </div>
+      </div>
+    </lib-card>
+  </div>
+</div>

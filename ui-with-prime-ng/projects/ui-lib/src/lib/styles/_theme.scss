@@ -1,19 +1,20 @@
-.light-theme {
-  --background: #fff;
-  --text-color: #000;
-  --primary: #007bff;
-}
+@import './variables';
+// .light-theme {
+//   --background: #fff;
+//   --text-color: #000;
+//   --primary: #007bff;
+// }
 
-.dark-theme {
-  --background: #121212;
-  --text-color: #fff;
-  --primary: #1e90ff;
-}
+// .dark-theme {
+//   --background: #121212;
+//   --text-color: #fff;
+//   --primary: #1e90ff;
+// }
 
-body,
-.p-drawer,
-.p-toolbar-custom .p-toolbar {
-  background-color: var(--background) !important;
-  color: var(--text-color) !important;
-}
+// body,
+// .p-drawer,
+// .p-toolbar-custom .p-toolbar {
+//   background-color: var(--background) !important;
+//   color: var(--text-color) !important;
+// }
 

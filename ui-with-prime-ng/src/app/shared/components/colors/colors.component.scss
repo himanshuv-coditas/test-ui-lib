@@ -1,0 +1,10 @@
+.color-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // two columns
+  gap: 1rem;
+}

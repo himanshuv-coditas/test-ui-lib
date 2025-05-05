@@ -1,0 +1,13 @@
+<div class="input-container">
+  <label [for]="inputType" class="block mb-2 font-medium">{{
+    label | titlecase
+  }}</label>
+
+  <input
+    pInputText
+    [type]="inputType"
+    [placeholder]="placeholder"
+    [(ngModel)]="inputValue"
+    [name]="inputType"
+  />
+</div>

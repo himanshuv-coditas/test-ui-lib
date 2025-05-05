@@ -1,0 +1,71 @@
+<div class="radio-container">
+  <label class="type-label block mb-2">{{ selectStyle | titlecase }} Select</label>
+  @switch (selectStyle) { @case(selectStyles.basic) {
+  <p-dropdown
+    [options]="options"
+    [(ngModel)]="selectedValue"
+    [placeholder]="placeholder"
+    optionLabel="label"
+    optionValue="value"
+    class="w-full"
+  ></p-dropdown>
+  } @case(selectStyles.checkmark) {
+  <p-dropdown
+    [options]="options"
+    [(ngModel)]="selectedValue"
+    [placeholder]="placeholder"
+    optionLabel="label"
+    optionValue="value"
+    [checkmark]="true"
+    class="w-full"
+  ></p-dropdown>
+  } @case(selectStyles.editable) {
+  <p-dropdown
+    [options]="options"
+    [(ngModel)]="selectedValue"
+    [placeholder]="placeholder"
+    [editable]="true"
+    optionLabel="label"
+    optionValue="value"
+    class="w-full"
+  ></p-dropdown>
+  } @case(selectStyles.filter) {
+  <p-dropdown
+    [options]="options"
+    [(ngModel)]="selectedValue"
+    [placeholder]="placeholder"
+    optionLabel="label"
+    [filter]="true"
+    optionValue="value"
+    class="w-full"
+  ></p-dropdown>
+  } @case(selectStyles.clearable) {
+  <p-dropdown
+    [options]="options"
+    [(ngModel)]="selectedValue"
+    [placeholder]="placeholder"
+    optionLabel="label"
+    [showClear]="true"
+    optionValue="value"
+    class="w-full"
+  ></p-dropdown>
+  } @case(selectStyles.multiple) {
+  <p-multiselect
+    [options]="options"
+    [(ngModel)]="selectedValue"
+    optionLabel="label"
+    optionValue="value"
+    placeholder="Select Cities"
+    [maxSelectedLabels]="3"
+    styleClass="w-full md:w-80"
+  />
+  } @case(selectStyles.disabled) {
+  <p-dropdown
+    [options]="options"
+    [ngModel]="'Option 1'"
+    [placeholder]="placeholder"
+    class="w-full"
+    [disabled]="true"
+  ></p-dropdown>
+  } }
+</div>

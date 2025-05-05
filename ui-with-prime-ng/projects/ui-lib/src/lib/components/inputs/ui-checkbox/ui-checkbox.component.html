@@ -1,0 +1,23 @@
+<div class="checkbox-container">
+  <label [for]="checkboxStyle" class="block mb-2 font-medium">{{
+    checkboxStyle | titlecase
+  }}</label>
+  @if (checkboxStyle === checkboxStyles.switch) {
+    <p-inputSwitch
+            [(ngModel)]="checkboxValue"
+          ></p-inputSwitch>
+  } @else if (checkboxStyle === checkboxStyles.disabled) {
+    <p-checkbox
+    [(ngModel)]="checkboxValue"
+    [value]="checkboxValue"
+    [binary]="true"
+    disabled
+  />
+  } @else {
+    <p-checkbox
+    [value]="checkboxValue"
+    [(ngModel)]="checkboxValue"
+    [binary]="true"
+  />
+  }
+</div>

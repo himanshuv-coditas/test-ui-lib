@@ -4,7 +4,6 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarModule } from 'primeng/sidebar';
 import { HeaderComponent } from "./shared/layouts/header/header.component";
 import { SidebarComponent } from './shared/layouts/sidebar/sidebar.component';
-import { ThemeService } from './shared/services/customtheme.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +12,7 @@ import { ThemeService } from './shared/services/customtheme.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  private isDark = false;
-  constructor(private themeService: ThemeService) {}
+  constructor() {}
   public visibleSidebar = false;
   title = 'ui-with-prime-ng';
 }
