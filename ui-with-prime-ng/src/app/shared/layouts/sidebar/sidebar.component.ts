@@ -19,5 +19,6 @@ export class SidebarComponent {
     { label: 'Colors', icon: 'pi-palette', routerLink: '/colors' },
     { label: 'Cards', icon: 'pi-clone', routerLink: '/cards' },
     { label: 'Typography', icon: 'pi-align-left', routerLink: '/typography' },
+    { label: 'Table', icon: 'pi-table', routerLink: '/table' },
   ];
 }

@@ -13,8 +13,4 @@ export class UiCardComponent {
   @Input() header: string = '';
   @Input() subHeader: string = '';
   public readonly cardTypes = CardTypes;
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.warn(this.header)
-  }
 }

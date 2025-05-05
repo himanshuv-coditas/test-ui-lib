@@ -1,0 +1,35 @@
+<div class="table-container">
+  <!-- Basic Table -->
+  <lib-card [cardType]="cardTypes.advanced" [header]="'Basic Table'">
+    <div class="card-content footer" footer>
+      <lib-table [paginator]="false" [tableData]="tableData"></lib-table>
+    </div>
+  </lib-card>
+
+  <!-- Pagination Table -->
+  <lib-card [cardType]="cardTypes.advanced" [header]="'Table with Pagination'">
+    <div class="card-content footer" footer>
+      <lib-table
+        [paginator]="true"
+        [totalRecords]="totalRecords"
+        [rows]="rows"
+        [tableData]="tableDataForPagination"
+        [rowsPerPageOptions]="rowsPerPageOptions"
+      ></lib-table>
+    </div>
+  </lib-card>
+
+  <!-- Sortable Table -->
+  <lib-card [cardType]="cardTypes.advanced" [header]="'Sortable Table'">
+    <div class="card-content footer" footer>
+      <lib-table
+        [paginator]="true"
+        [sortable]="true"
+        [rows]="rows"
+        [totalRecords]="totalRecords"
+        [rowsPerPageOptions]="rowsPerPageOptions"
+        [tableData]="tableDataForPagination"
+      ></lib-table>
+    </div>
+  </lib-card>
+</div>

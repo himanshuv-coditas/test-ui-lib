@@ -1,1 +1,10 @@
 @use '../../styles/_typography.scss' as *;
+
+.typography-container {
+  .typography-style {
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+  }
+}

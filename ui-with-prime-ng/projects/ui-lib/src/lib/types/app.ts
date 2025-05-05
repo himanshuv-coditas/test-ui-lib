@@ -127,3 +127,11 @@ export enum TypographyColor {
   textGrayDark = 'text-gray-dark',
   textWhite = 'text-white'
 }
+
+export interface TableData {
+  code: string;
+  name: string;
+  category: string;
+  quantity: number;
+}
+
