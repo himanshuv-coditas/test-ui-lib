@@ -7,12 +7,15 @@
       <lib-checkbox [label]="label" [checkboxStyle]="checkboxStyle"></lib-checkbox>
     }
     @case(fieldTypes.select) {
-      <lib-select [placeholder]="placeholder" [options]="options" [selectStyle]="selectStyle"></lib-select>
+      <lib-select [placeholder]="placeholder" [options]="options" [selectStyle]="selectStyle" [label]="label"></lib-select>
     }
     @case(fieldTypes.input) {
       <div class="input-container">
-        <lib-input [inputType]="subType" [label]="label"></lib-input>
+        <lib-input [placeholder]="placeholder" [inputType]="subType" [label]="label"></lib-input>
       </div>
+    }
+    @case(fieldTypes.textarea) {
+      <lib-textarea [inputType]="subType" [label]="label" [placeholder]="placeholder" [rows]="rows" [cols]="cols"></lib-textarea>
     }
   }
 </div>

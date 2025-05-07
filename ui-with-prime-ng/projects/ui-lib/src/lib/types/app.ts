@@ -1,3 +1,8 @@
+export enum Projects {
+  onboarding = 'onboarding',
+  uiLibrary = 'ui-library',
+}
+
 export interface SidebarItem {
   label: string;
   icon: string;
@@ -41,6 +46,7 @@ export enum FieldTypes {
   checkbox = 'checkbox',
   select = 'select',
   input = 'input',
+  textarea = 'textarea'
 }
 
 export enum InputTypes {
@@ -48,6 +54,9 @@ export enum InputTypes {
   password = 'password',
   email = 'email',
   number = 'number',
+  date = 'date',
+  validatable = 'validatable',
+  autocomplete = 'autocomplete'
 }
 
 export enum CheckboxStyle {
@@ -135,3 +144,13 @@ export interface TableData {
   quantity: number;
 }
 
+
+export interface StepType {
+  label: string;
+}
+
+export enum onBoardingStep {
+  signUp = 0,
+  personalInformation = 1,
+  educationInformation = 2
+}

@@ -1,0 +1,20 @@
+@if (selectedProject() === null) {
+  <div class="select-project">
+    <lib-card [cardType]="cardTypes.advanced" [header]="'Select Project'">
+      <div footer class="footer card-content">
+        <lib-button
+          [severity]="buttonVariants.secondary"
+          [label]="projects.uiLibrary"
+          [routerLink]="'/ui-library'"
+          (clickEmitter)="setSelectedProject($event)"
+        ></lib-button>
+        <lib-button
+          [severity]="buttonVariants.info"
+          [label]="projects.onboarding"
+          [routerLink]="'/onboarding'"
+          (clickEmitter)="setSelectedProject($event)"
+        ></lib-button>
+      </div>
+    </lib-card>
+  </div>
+}

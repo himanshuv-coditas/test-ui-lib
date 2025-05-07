@@ -14,11 +14,11 @@ import { SidebarItem } from '../../../../../projects/ui-lib/src/lib/types/app';
 })
 export class SidebarComponent {
   public sidebarItems: SidebarItem[] = [
-    { label: 'Buttons', icon: 'pi-circle', routerLink: '/buttons' },
-    { label: 'Inputs', icon: 'pi-pencil', routerLink: '/inputs' },
-    { label: 'Colors', icon: 'pi-palette', routerLink: '/colors' },
-    { label: 'Cards', icon: 'pi-clone', routerLink: '/cards' },
-    { label: 'Typography', icon: 'pi-align-left', routerLink: '/typography' },
-    { label: 'Table', icon: 'pi-table', routerLink: '/table' },
+    { label: 'Buttons', icon: 'pi-circle', routerLink: 'buttons' },
+    { label: 'Inputs', icon: 'pi-pencil', routerLink: 'inputs' },
+    { label: 'Colors', icon: 'pi-palette', routerLink: 'colors' },
+    { label: 'Cards', icon: 'pi-clone', routerLink: 'cards' },
+    { label: 'Typography', icon: 'pi-align-left', routerLink: 'typography' },
+    { label: 'Table', icon: 'pi-table', routerLink: 'table' },
   ];
 }

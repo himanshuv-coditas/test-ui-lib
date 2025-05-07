@@ -3,11 +3,36 @@
     label | titlecase
   }}</label>
 
+  @switch (inputType) { @case (inputTypes.validatable) {
   <input
     pInputText
     [type]="inputType"
     [placeholder]="placeholder"
-    [(ngModel)]="inputValue"
+    [value]="value"
     [name]="inputType"
+    [attr.autocomplete]="'off'"
+    [ngClass]="validationClass()"
+    (input)="onInputChange($event)"
   />
+  } @case (inputTypes.autocomplete) {
+  <input
+    pInputText
+    [type]="inputType"
+    [placeholder]="placeholder"
+    [ngModel]="inputValue"
+    [name]="inputType"
+    [attr.autocomplete]="'off'"
+    (ngModelChange)="onInputChange($event)"
+  />
+  } @default {
+  <input
+    pInputText
+    [type]="inputType"
+    [placeholder]="placeholder"
+    [value]="value"
+    [name]="inputType"
+    [attr.autocomplete]="'off'"
+    (input)="onInputChange($event)"
+  />
+  } }
 </div>

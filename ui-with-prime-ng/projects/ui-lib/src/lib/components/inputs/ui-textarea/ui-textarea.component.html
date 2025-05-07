@@ -1,0 +1,11 @@
+<div class="textarea-container">
+  <label [for]="inputType" class="block mb-2 font-medium">{{
+    label | titlecase
+  }}</label>
+<textarea
+  pTextarea
+  [rows]="rows"
+  [cols]="cols"
+  [placeholder]="placeholder"
+></textarea>
+</div>

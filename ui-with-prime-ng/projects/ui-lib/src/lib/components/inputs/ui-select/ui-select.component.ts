@@ -15,6 +15,7 @@ export class UiSelectComponent {
   @Input() selectStyle: SelectStyle = SelectStyle.basic;
   @Input() options: Option[] = [];
   @Input() placeholder: string = '';
+  @Input() label: string = '';
   public selectedValue: string | null = null;
   public readonly selectStyles = SelectStyle;
 }

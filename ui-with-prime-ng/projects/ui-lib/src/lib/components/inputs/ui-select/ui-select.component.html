@@ -1,5 +1,5 @@
 <div class="radio-container">
-  <label class="type-label block mb-2">{{ selectStyle | titlecase }} Select</label>
+  <label class="type-label block mb-2">{{ label | titlecase }}</label>
   @switch (selectStyle) { @case(selectStyles.basic) {
   <p-dropdown
     [options]="options"

@@ -1,0 +1,16 @@
+.app-toolbar {
+  display: flex;
+  height: 100%;
+  gap: 10px;
+  align-items: center;
+  position: sticky;
+  top: 0; // Distance from the top when it becomes sticky
+  z-index: 100; // Ensure it appears above other content
+  app-header {
+    width: 100%;
+  }
+}
+.app-content {
+  height: 100%;
+  margin: 10px 50px;
+}

@@ -2,16 +2,11 @@
   @case(cardTypes.advanced) {
     <div>
       <p-card>
-        <!-- <ng-template #header>
-          {{ header }}
-        </ng-template> -->
-
         <ng-template #title>
-          {{ header }}
-        </ng-template>
-
-        <ng-template #subtitle>
-          {{ subHeader }}
+          <div class="custom-card-header">
+            <h1 class="custom-card-title">{{ header }}</h1>
+            <div class="custom-card-subtitle">{{ subHeader }}</div>
+          </div>
         </ng-template>
 
         <ng-content #content>

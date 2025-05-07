@@ -1,0 +1,52 @@
+@import '../../../../../projects/ui-lib/src/lib/styles/variables';
+.onboarding-container {
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  .onboarding-content {
+    width: 90%;
+    ::ng-deep {
+      .p-card {
+        .p-card-body {
+          border-radius: 10px;
+          padding: 0;
+          .p-card-title, .p-card-subtitle {
+            background: $primary-light;
+            padding: 1.5rem;
+            border-radius: 1rem 1rem 0 0;
+            .custom-card-header {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            color: $white-color;
+          }
+          .p-card-footer{
+            display: flex;
+            align-items: center;
+            .footer {
+              flex: 1;
+            }
+          }
+        }
+      }
+    }
+    .onboarding-form {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .next-button, .back-button {
+      float: right;
+      margin: 1rem 1rem;
+      font-size: 0.9rem;
+      padding: 0.5rem 1.5rem;
+    }
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+

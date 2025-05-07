@@ -1,0 +1,13 @@
+.select-project {
+  .footer {
+    display: flex;
+    gap: 15px;
+  }
+  ::ng-deep {
+    .p-card {
+      .p-card-body {
+        align-items: center;
+      }
+    }
+  }
+}

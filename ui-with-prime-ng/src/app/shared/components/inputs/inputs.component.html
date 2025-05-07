@@ -32,6 +32,35 @@
     </div>
   </lib-card>
 
+  <!-- Validatable Input  -->
+  <lib-card
+    [cardType]="cardTypes.advanced"
+    [header]="'Validatable Input'"
+  >
+    <div footer class="footer validatable-container">
+      <lib-form-field
+        [fieldType]="fieldTypes.input"
+        [subType]="inputTypes.validatable"
+        [placeholder]="inputTypes.validatable"
+      ></lib-form-field>
+    </div>
+  </lib-card>
+
+  <!-- Autocomplete Input  -->
+  <lib-card
+    [cardType]="cardTypes.advanced"
+    [header]="'Autocomplete Input'"
+  >
+    <div footer class="footer autocomplete-container">
+      <lib-form-field
+        [fieldType]="fieldTypes.input"
+        [subType]="inputTypes.autocomplete"
+        [placeholder]="inputTypes.autocomplete"
+
+      ></lib-form-field>
+    </div>
+  </lib-card>
+
   <!-- Checkbox  -->
   <lib-card
     [cardType]="cardTypes.advanced"
@@ -53,21 +82,6 @@
         [fieldType]="fieldTypes.checkbox"
         [label]="fieldTypes.checkbox"
       ></lib-form-field>
-      <!-- <lib-form-field
-        [fieldType]="fieldTypes.checkbox"
-        [label]="fieldTypes.checkbox"
-        [size]="size.small"
-      ></lib-form-field>
-      <lib-form-field
-        [size]="size.medium"
-        [fieldType]="fieldTypes.checkbox"
-        [label]="fieldTypes.checkbox"
-      ></lib-form-field>
-      <lib-form-field
-        [size]="size.large"
-        [fieldType]="fieldTypes.checkbox"
-        [label]="fieldTypes.checkbox"
-      ></lib-form-field> -->
     </div>
   </lib-card>
 

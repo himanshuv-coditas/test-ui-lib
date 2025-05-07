@@ -1,0 +1,153 @@
+<div class="onboarding-container">
+  <div class="onboarding-content">
+    <lib-card
+      [cardType]="cardTypes.advanced"
+      [header]="onBoadingHeader"
+      [subHeader]="onBoadingSubHeader"
+    >
+      <div footer class="footer onboarding-content">
+        <p-steps
+          [model]="steps"
+          (activeIndexChange)="onStepChange($event)"
+          [activeIndex]="activeIndex"
+          [readonly]="false"
+        ></p-steps>
+        <form [formGroup]="form">
+          @switch (activeIndex()) { @case (onBoardingStep.signUp) {
+          <div class="onboarding-form" formGroupName="signUp">
+            <lib-input
+              [inputType]="inputTypes.email"
+              [label]="'Email'"
+              [placeholder]="'Email'"
+              [formControlName]="'email'"
+            ></lib-input>
+            <lib-input
+              [inputType]="inputTypes.password"
+              [label]="'Password'"
+              [placeholder]="'Password'"
+              [formControlName]="'password'"
+            ></lib-input>
+            <lib-input
+              [inputType]="inputTypes.password"
+              [label]="'Confirm Password'"
+              [placeholder]="'Confirm Password'"
+              [formControlName]="'confirmPassword'"
+            ></lib-input>
+          </div>
+          <button
+            class="next-button"
+            severity="info"
+            pButton
+            label="Next"
+            (click)="next()"
+          ></button>
+          }
+          @case (onBoardingStep.personalInformation) {
+          <div class="onboarding-form" formGroupName="personalInformation">
+            <lib-input
+              [inputType]="inputTypes.text"
+              [label]="'First Name'"
+              [placeholder]="'First Name'"
+            ></lib-input>
+            <lib-input
+              [inputType]="inputTypes.text"
+              [label]="'Last Name'"
+              [placeholder]="'Last Name'"
+            ></lib-input>
+            <lib-select
+              [selectStyle]="selectStyle.basic"
+              [label]="'Gender'"
+              [placeholder]="'Gender'"
+            ></lib-select>
+            <lib-input
+              [inputType]="inputTypes.date"
+              [label]="'Date of Birth'"
+              [placeholder]="'Date of Birth'"
+            ></lib-input>
+            <lib-input
+              [inputType]="inputTypes.number"
+              [label]="'Phone Number'"
+              [placeholder]="'Phone Number'"
+            ></lib-input>
+            <lib-textarea
+              [inputType]="inputTypes.text"
+              [label]="'Address'"
+              [placeholder]="'Address'"
+            ></lib-textarea>
+            <div class="button-container">
+              <button
+                class="back-button"
+                pButton
+                severity="secondary"
+                label="Back"
+                (click)="prev()"
+              ></button>
+              <button
+                class="next-button"
+                pButton
+                severity="info"
+                label="Next"
+                (click)="next()"
+              ></button>
+            </div>
+          </div>
+          } @case (onBoardingStep.educationInformation) {
+          <div class="onboarding-form" formGroupName="educationInformation">
+            <lib-input
+              [inputType]="inputTypes.text"
+              [label]="'High School'"
+              [placeholder]="'Name of your high school'"
+            ></lib-input>
+            <lib-select
+              [selectStyle]="selectStyle.basic"
+              [label]="'Graduation Year'"
+              [placeholder]="'Select Year'"
+            ></lib-select>
+            <lib-input
+              [inputType]="inputTypes.number"
+              [label]="'GPA'"
+              [placeholder]="'e.g., 3.5'"
+            ></lib-input>
+            <lib-input
+              [inputType]="inputTypes.text"
+              [label]="'Intended Major'"
+              [placeholder]="'e.g., Computer Science'"
+            ></lib-input>
+            <lib-input
+              [inputType]="inputTypes.text"
+              [label]="'Secondary Major/Minor(Optional)'"
+              [placeholder]="'e.g., Mathematics'"
+            ></lib-input>
+            <lib-textarea
+              [inputType]="inputTypes.text"
+              [label]="'Extracurricular Activities'"
+              [placeholder]="
+                'Describe your extracurricular activities, achievements, or positions held'
+              "
+            ></lib-textarea>
+            <div class="button-container">
+              <button
+                class="back-button"
+                pButton
+                severity="secondary"
+                label="Back"
+                (click)="prev()"
+              ></button>
+              <button
+                class="next-button"
+                pButton
+                severity="info"
+                label="Complete Registration"
+                (click)="next()"
+              >
+                <i class="pi pi-check-circle"></i>
+              </button>
+            </div>
+          </div>
+          }
+        }
+        </form>
+      </div>
+    </lib-card>
+  </div>
+</div>
