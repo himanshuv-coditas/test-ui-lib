@@ -14,11 +14,11 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
       useExisting: forwardRef(() => UiInputComponent),
       multi: true
     },
-    // {
-    //   provide: NG_VALIDATORS,
-    //   useExisting: forwardRef(() => UiInputComponent),
-    //   multi: true
-    // }
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => UiInputComponent),
+      multi: true
+    }
   ],
   templateUrl: './ui-input.component.html',
   styleUrl: './ui-input.component.scss'
@@ -27,9 +27,9 @@ export class UiInputComponent {
   @Input() label: string = 'text';
   @Input() inputType: string = 'text';
   @Input() placeholder: string = '';
+  @Input() invalid: boolean = false;
   public readonly inputTypes = InputTypes;
   public inputValue = signal<string>('');
-  public validationClass = computed(() => this.inputValue().length > 0 ? '' : 'ng-invalid ng-dirty');
 
   value: any = '';
   onChange = (_: any) => {};
@@ -54,7 +54,7 @@ export class UiInputComponent {
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    if (!this.value || this.value.trim() === '') {
+    if (!this.value) {
       return { required: true };
     }
     return null;

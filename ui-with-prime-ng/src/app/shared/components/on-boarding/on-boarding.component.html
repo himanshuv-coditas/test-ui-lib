@@ -15,34 +15,90 @@
         <form [formGroup]="form">
           @switch (activeIndex()) { @case (onBoardingStep.signUp) {
           <div class="onboarding-form" formGroupName="signUp">
-            <lib-input
-              [inputType]="inputTypes.email"
-              [label]="'Email'"
-              [placeholder]="'Email'"
-              [formControlName]="'email'"
-            ></lib-input>
-            <lib-input
-              [inputType]="inputTypes.password"
-              [label]="'Password'"
-              [placeholder]="'Password'"
-              [formControlName]="'password'"
-            ></lib-input>
-            <lib-input
-              [inputType]="inputTypes.password"
-              [label]="'Confirm Password'"
-              [placeholder]="'Confirm Password'"
-              [formControlName]="'confirmPassword'"
-            ></lib-input>
+            <!-- Email Field -->
+            <div class="form-group">
+              <ng-container *ngIf="form.get('signUp.email') as email">
+                <lib-input
+                  [inputType]="inputTypes.email"
+                  label="Email"
+                  placeholder="Email"
+                  formControlName="email"
+                  [invalid]="email.invalid && email.touched"
+                ></lib-input>
+
+                <ng-container *ngIf="email.touched && email.invalid">
+                  @if (email.errors?.['required']) {
+                  <p class="error-message">Email is required.</p>
+                  } @else if (email.errors?.['email']) {
+                  <p class="error-message">Invalid email address.</p>
+                  }
+                </ng-container>
+              </ng-container>
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+              <ng-container *ngIf="form.get('signUp.password') as password">
+                <lib-input
+                  [inputType]="inputTypes.password"
+                  label="Password"
+                  placeholder="Password"
+                  formControlName="password"
+                  [invalid]="password.invalid && password.touched"
+                ></lib-input>
+
+                <ng-container *ngIf="password.touched && password.invalid">
+                  @if (password.errors?.['required']) {
+                  <p class="error-message">Password is required.</p>
+                  } @else if (password.errors?.['minlength']) {
+                  <p class="error-message">
+                    Password must be at least 8 characters
+                  </p>
+                  }
+                </ng-container>
+              </ng-container>
+            </div>
+
+            <!-- Confirm Password Field -->
+            <div class="form-group">
+              <ng-container
+                *ngIf="form.get('signUp.confirmPassword') as confirmPassword"
+              >
+                <lib-input
+                  [inputType]="inputTypes.password"
+                  label="Confirm Password"
+                  placeholder="Confirm Password"
+                  formControlName="confirmPassword"
+                  [invalid]="confirmPassword.invalid && confirmPassword.touched"
+                ></lib-input>
+
+                <ng-container *ngIf="confirmPassword.touched">
+                  @if (confirmPassword.errors?.['required']) {
+                  <p class="error-message">Confirm Password is required.</p>
+                  } @else if (confirmPassword.value !==
+                  form.get('signUp.password')?.value) {
+                  <p class="error-message">Passwords do not match</p>
+                  }
+                </ng-container>
+              </ng-container>
+            </div>
           </div>
-          <button
-            class="next-button"
-            severity="info"
-            pButton
-            label="Next"
-            (click)="next()"
-          ></button>
-          }
-          @case (onBoardingStep.personalInformation) {
+          <div class="single-btn-container">
+            <button
+              class="next-button"
+              severity="info"
+              pButton
+              label="Next"
+              (click)="next()"
+            ></button>
+          </div>
+          <ng-container
+            *ngTemplateOutlet="
+              errorMessages;
+              context: { errors: getFormErrors() }
+            "
+          ></ng-container>
+          } @case (onBoardingStep.personalInformation) {
           <div class="onboarding-form" formGroupName="personalInformation">
             <lib-input
               [inputType]="inputTypes.text"
@@ -58,6 +114,7 @@
               [selectStyle]="selectStyle.basic"
               [label]="'Gender'"
               [placeholder]="'Gender'"
+              [options]="genderOptions"
             ></lib-select>
             <lib-input
               [inputType]="inputTypes.date"
@@ -102,6 +159,7 @@
               [selectStyle]="selectStyle.basic"
               [label]="'Graduation Year'"
               [placeholder]="'Select Year'"
+              [options]="graduationYearOptions"
             ></lib-select>
             <lib-input
               [inputType]="inputTypes.number"
@@ -144,10 +202,26 @@
               </button>
             </div>
           </div>
-          }
-        }
+          } }
         </form>
       </div>
     </lib-card>
   </div>
 </div>
+
+<!-- Display the summary of errors below the form -->
+<ng-template #errorMessages let-errors="errors">
+  @if (getFormErrors().length > 0 ) {
+  <div class="error-summary">
+    <p>
+      <i class="pi pi-exclamation-circle"></i>
+      Please fix the following issues:
+    </p>
+    <ul>
+      @for (error of getFormErrors(); track error) {
+      <li>{{ error }}</li>
+      }
+    </ul>
+  </div>
+  }
+</ng-template>
