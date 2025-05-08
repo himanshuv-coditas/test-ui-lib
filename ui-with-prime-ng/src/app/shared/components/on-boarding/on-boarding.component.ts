@@ -6,6 +6,7 @@ import { StepsModule } from 'primeng/steps';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UiSelectComponent } from '../../../../../projects/ui-lib/src/lib/components/inputs/ui-select/ui-select.component';
 import { CommonModule } from '@angular/common';
+import { ErrorsService } from '../../services/errors/errors.service';
 
 @Component({
   selector: 'app-on-boarding',
@@ -14,7 +15,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './on-boarding.component.scss'
 })
 export class OnBoardingComponent {
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private formValidationService: ErrorsService) {
     this.form = this.fb.group({
       signUp: this.fb.group({
         email: ['', [Validators.required, Validators.email]],
@@ -22,20 +23,20 @@ export class OnBoardingComponent {
         confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
       }),
       personalInformation: this.fb.group({
-        firstName: ['', [Validators.required]],
-        lastName: ['', [Validators.required]],
-        phone: ['', [Validators.required]],
-        dateOfBirth: ['', [Validators.required]],
+        firstName: ['', [Validators.required, Validators.minLength(2)]],
+        lastName: ['', [Validators.required, Validators.minLength(2)]],
+        phone: ['', [Validators.required, Validators.minLength(10)]],
+        dateOfBirth: ['', [Validators.required, this.formValidationService.minAgeValidator(16)]],
         gender: ['', [Validators.required]],
-        address: ['', [Validators.required]],
+        address: ['', [Validators.required, Validators.minLength(10)]],
       }),
       educationInformation: this.fb.group({
         school: ['', [Validators.required]],
         graduationYear: ['', [Validators.required]],
-        gpa: ['', [Validators.required]],
-        intendedMajor: ['', [Validators.required]],
-        secondaryMajor: ['', [Validators.required]],
-        extracurricularActivities: ['', [Validators.required]],
+        gpa: ['', [Validators.required, Validators.min(0), Validators.max(4)]],
+        intendedMajor: ['', [Validators.required, Validators.minLength(2)]],
+        secondaryMajor: ['', [Validators.required, Validators.minLength(2)]],
+        extracurricularActivities: [''],
       }),
     });
   }
@@ -82,10 +83,6 @@ export class OnBoardingComponent {
   ];
   public activeIndex = signal(0);
 
-  ngOnInit() {
-    this.form.get('signUp.email')?.valueChanges.subscribe((value) => {
-      console.log(this.form.get('signUp.email'))    });
-  }
   next() {
     if (this.activeIndex() < this.steps.length - 1) {
       this.activeIndex.update((value) => value + 1);
@@ -104,44 +101,11 @@ export class OnBoardingComponent {
   }
 
 
-  getFormErrors() {
-    const errors: string[] = [];
-
-    const email = this.form.get('signUp.email');
-    const password = this.form.get('signUp.password');
-    const confirmPassword = this.form.get('signUp.confirmPassword');
-
-    if (email?.touched && email.dirty) {
-      if (email.hasError('required')) {
-        errors.push('Email is required');
-      }
-      if (email.hasError('email')) {
-        errors.push('Email is not valid');
-      }
-    }
-
-    if (password?.touched && password.dirty) {
-      if (password.hasError('required')) {
-        errors.push('Password is required');
-      }
-      if (password.hasError('minlength')) {
-        errors.push('Password must be at least 8 characters');
-      }
-    }
-
-    if (confirmPassword?.touched && confirmPassword.dirty) {
-      if (confirmPassword.hasError('required')) {
-        errors.push('Confirm password is required');
-      }
-      if (confirmPassword.hasError('minlength')) {
-        errors.push('Confirm password must be at least 8 characters');
-      }
-      if (confirmPassword.value !== password?.value) {
-        errors.push('Passwords do not match');
-      }
-    }
-
-    return errors;
+  getFormErrors(section: string) {
+    return this.formValidationService.getFormErrors(this.form, section);
   }
 
+  completeRegistration() {
+    alert('Onboarding completed successfully!');
+  }
 }

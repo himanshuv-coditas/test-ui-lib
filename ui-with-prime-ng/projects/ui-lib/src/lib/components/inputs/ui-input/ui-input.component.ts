@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, forwardRef, Input, signal } from '@angular/core';
+import { Component, forwardRef, Input, signal } from '@angular/core';
 import { AbstractControl, FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTypes } from '../../../types/app';
@@ -29,7 +29,6 @@ export class UiInputComponent {
   @Input() placeholder: string = '';
   @Input() invalid: boolean = false;
   public readonly inputTypes = InputTypes;
-  public inputValue = signal<string>('');
 
   value: any = '';
   onChange = (_: any) => {};

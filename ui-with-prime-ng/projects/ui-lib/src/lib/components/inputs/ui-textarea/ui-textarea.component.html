@@ -4,8 +4,11 @@
   }}</label>
 <textarea
   pTextarea
+  [ngModel]="value"
+  (ngModelChange)="onInputChange($event)"
   [rows]="rows"
   [cols]="cols"
   [placeholder]="placeholder"
+  [ngClass]="invalid ? 'ng-invalid ng-dirty' : ''"
 ></textarea>
 </div>

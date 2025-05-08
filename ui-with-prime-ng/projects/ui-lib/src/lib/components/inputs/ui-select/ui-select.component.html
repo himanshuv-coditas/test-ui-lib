@@ -3,61 +3,85 @@
   @switch (selectStyle) { @case(selectStyles.basic) {
   <p-dropdown
     [options]="options"
-    [(ngModel)]="selectedValue"
+    [ngModel]="value"
+    (ngModelChange)="onSelectChange($event)"
     [placeholder]="placeholder"
     optionLabel="label"
     optionValue="value"
     class="w-full"
+    [ngClass]="{
+      'ng-invalid ng-dirty': invalid
+    }"
   ></p-dropdown>
   } @case(selectStyles.checkmark) {
   <p-dropdown
     [options]="options"
-    [(ngModel)]="selectedValue"
+    [ngModel]="value"
+    (ngModelChange)="onSelectChange($event)"
     [placeholder]="placeholder"
     optionLabel="label"
     optionValue="value"
     [checkmark]="true"
     class="w-full"
+    [ngClass]="{
+      'ng-invalid ng-dirty': invalid
+    }"
   ></p-dropdown>
   } @case(selectStyles.editable) {
   <p-dropdown
     [options]="options"
-    [(ngModel)]="selectedValue"
+    [ngModel]="value"
+    (ngModelChange)="onSelectChange($event)"
     [placeholder]="placeholder"
     [editable]="true"
     optionLabel="label"
     optionValue="value"
     class="w-full"
+    [ngClass]="{
+      'ng-invalid ng-dirty': invalid
+    }"
   ></p-dropdown>
   } @case(selectStyles.filter) {
   <p-dropdown
     [options]="options"
-    [(ngModel)]="selectedValue"
+    [ngModel]="value"
+    (ngModelChange)="onSelectChange($event)"
     [placeholder]="placeholder"
     optionLabel="label"
     [filter]="true"
     optionValue="value"
     class="w-full"
+    [ngClass]="{
+      'ng-invalid ng-dirty': invalid
+    }"
   ></p-dropdown>
   } @case(selectStyles.clearable) {
   <p-dropdown
     [options]="options"
-    [(ngModel)]="selectedValue"
+    [ngModel]="value"
+    (ngModelChange)="onSelectChange($event)"
     [placeholder]="placeholder"
     optionLabel="label"
     [showClear]="true"
     optionValue="value"
     class="w-full"
+    [ngClass]="{
+      'ng-invalid ng-dirty': invalid
+    }"
   ></p-dropdown>
   } @case(selectStyles.multiple) {
   <p-multiselect
     [options]="options"
-    [(ngModel)]="selectedValue"
+    [ngModel]="value"
+    (ngModelChange)="onSelectChange($event)"
     optionLabel="label"
     optionValue="value"
     placeholder="Select Cities"
     [maxSelectedLabels]="3"
     styleClass="w-full md:w-80"
+    [ngClass]="{
+      'ng-invalid ng-dirty': invalid
+    }"
   />
   } @case(selectStyles.disabled) {
   <p-dropdown
@@ -66,6 +90,9 @@
     [placeholder]="placeholder"
     class="w-full"
     [disabled]="true"
+    [ngClass]="{
+      'ng-invalid ng-dirty': invalid
+    }"
   ></p-dropdown>
   } }
 </div>

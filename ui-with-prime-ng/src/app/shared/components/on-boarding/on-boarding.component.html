@@ -66,8 +66,8 @@
               >
                 <lib-input
                   [inputType]="inputTypes.password"
-                  label="Confirm Password"
-                  placeholder="Confirm Password"
+                  [label]="'Confirm Password'"
+                  [placeholder]="'Confirm Password'"
                   formControlName="confirmPassword"
                   [invalid]="confirmPassword.invalid && confirmPassword.touched"
                 ></lib-input>
@@ -84,122 +84,330 @@
             </div>
           </div>
           <div class="single-btn-container">
-            <button
-              class="next-button"
-              severity="info"
-              pButton
-              label="Next"
-              (click)="next()"
-            ></button>
-          </div>
-          <ng-container
-            *ngTemplateOutlet="
-              errorMessages;
-              context: { errors: getFormErrors() }
-            "
-          ></ng-container>
-          } @case (onBoardingStep.personalInformation) {
-          <div class="onboarding-form" formGroupName="personalInformation">
-            <lib-input
-              [inputType]="inputTypes.text"
-              [label]="'First Name'"
-              [placeholder]="'First Name'"
-            ></lib-input>
-            <lib-input
-              [inputType]="inputTypes.text"
-              [label]="'Last Name'"
-              [placeholder]="'Last Name'"
-            ></lib-input>
-            <lib-select
-              [selectStyle]="selectStyle.basic"
-              [label]="'Gender'"
-              [placeholder]="'Gender'"
-              [options]="genderOptions"
-            ></lib-select>
-            <lib-input
-              [inputType]="inputTypes.date"
-              [label]="'Date of Birth'"
-              [placeholder]="'Date of Birth'"
-            ></lib-input>
-            <lib-input
-              [inputType]="inputTypes.number"
-              [label]="'Phone Number'"
-              [placeholder]="'Phone Number'"
-            ></lib-input>
-            <lib-textarea
-              [inputType]="inputTypes.text"
-              [label]="'Address'"
-              [placeholder]="'Address'"
-            ></lib-textarea>
-            <div class="button-container">
-              <button
-                class="back-button"
-                pButton
-                severity="secondary"
-                label="Back"
-                (click)="prev()"
-              ></button>
+            <ng-container
+              *ngTemplateOutlet="
+                errorMessages;
+                context: {
+                  section: 'signUp',
+                  errors: getFormErrors('signUp')
+                }
+              "
+            ></ng-container>
+            <div class="button-container single-btn-container">
               <button
                 class="next-button"
-                pButton
                 severity="info"
+                pButton
+                [disabled]="form.get('signUp')?.invalid"
                 label="Next"
                 (click)="next()"
               ></button>
             </div>
           </div>
+          } @case (onBoardingStep.personalInformation) {
+          <div class="onboarding-form" formGroupName="personalInformation">
+            <div
+              class="form-group"
+              *ngIf="form.get('personalInformation.firstName') as firstName"
+            >
+              <lib-input
+                [inputType]="inputTypes.text"
+                [label]="'First Name'"
+                [placeholder]="'First Name'"
+                formControlName="firstName"
+                [invalid]="firstName.invalid"
+              ></lib-input>
+              <ng-container *ngIf="firstName.invalid">
+                @if (firstName.errors?.['required']) {
+                <p class="error-message">First name is required.</p>
+                } @else if (firstName.errors?.['minlength']) {
+                <p class="error-message">
+                  First name must be at least 2 characters.
+                </p>
+                }
+              </ng-container>
+            </div>
+            <div
+              class="form-group"
+              *ngIf="form.get('personalInformation.lastName') as lastName"
+            >
+              <lib-input
+                [inputType]="inputTypes.text"
+                [label]="'Last Name'"
+                [placeholder]="'Last Name'"
+                formControlName="lastName"
+                [invalid]="lastName.invalid"
+              ></lib-input>
+              <ng-container *ngIf="lastName.invalid">
+                @if (lastName.errors?.['required']) {
+                <p class="error-message">Last name is required.</p>
+                } @else if (lastName.errors?.['minlength']) {
+                <p class="error-message">
+                  Last name must be at least 2 characters.
+                </p>
+                }
+              </ng-container>
+            </div>
+            <div
+              class="form-group"
+              *ngIf="form.get('personalInformation.gender') as gender"
+            >
+              <lib-select
+                [selectStyle]="selectStyle.basic"
+                [label]="'Gender'"
+                [placeholder]="'Gender'"
+                formControlName="gender"
+                [invalid]="gender.invalid"
+                [options]="genderOptions"
+              ></lib-select>
+              <ng-container *ngIf="gender.invalid">
+                @if (gender.errors?.['required']) {
+                <p class="error-message">Gender is required.</p>
+                }
+              </ng-container>
+            </div>
+            <div
+              class="form-group"
+              *ngIf="form.get('personalInformation.dateOfBirth') as dateOfBirth"
+            >
+              <lib-input
+                [inputType]="inputTypes.date"
+                [label]="'Date of Birth'"
+                [placeholder]="'Date of Birth'"
+                formControlName="dateOfBirth"
+                [invalid]="dateOfBirth.invalid"
+              ></lib-input>
+              <ng-container *ngIf="dateOfBirth.invalid">
+                @if (dateOfBirth.errors?.['required']) {
+                <p class="error-message">Date of birth is required.</p>
+                } @else if (dateOfBirth.errors?.['minAge']) {
+                <p class="error-message">You must be at least 16 years old</p>
+                }
+              </ng-container>
+            </div>
+            <div
+              class="form-group"
+              *ngIf="form.get('personalInformation.phone') as phoneNumber"
+            >
+              <lib-input
+                [inputType]="inputTypes.number"
+                [label]="'Phone Number'"
+                [placeholder]="'Phone Number'"
+                formControlName="phone"
+                [invalid]="phoneNumber.invalid"
+              ></lib-input>
+              <ng-container *ngIf="phoneNumber.invalid">
+                @if (phoneNumber.errors?.['required']) {
+                <p class="error-message">Phone number is required.</p>
+                } @else if (phoneNumber.errors?.['minlength']) {
+                <p class="error-message">
+                  Phone number must be at least 10 characters.
+                </p>
+                }
+              </ng-container>
+            </div>
+            <div
+              class="form-group"
+              *ngIf="form.get('personalInformation.address') as address"
+            >
+              <lib-textarea
+                [inputType]="inputTypes.text"
+                [label]="'Address'"
+                [placeholder]="'Address'"
+                formControlName="address"
+                [invalid]="address.invalid"
+              ></lib-textarea>
+              <ng-container>
+                @if (address.errors?.['required']) {
+                <p class="error-message">Address is required.</p>
+                } @else if (address.errors?.['minlength']) {
+                <p class="error-message">
+                  Address must be at least 2 characters.
+                </p>
+                }
+              </ng-container>
+            </div>
+            <div class="error-button-container">
+              <ng-container
+                *ngTemplateOutlet="
+                  errorMessages;
+                  context: {
+                    section: 'personalInformation',
+                    errors: getFormErrors('personalInformation')
+                  }
+                "
+              ></ng-container>
+              <div class="button-container">
+                <button
+                  class="back-button"
+                  pButton
+                  severity="secondary"
+                  label="Back"
+                  (click)="prev()"
+                ></button>
+                <button
+                  class="next-button"
+                  pButton
+                  severity="info"
+                  label="Next"
+                  [disabled]="form.get('personalInformation')?.invalid"
+                  (click)="next()"
+                ></button>
+              </div>
+            </div>
+          </div>
           } @case (onBoardingStep.educationInformation) {
           <div class="onboarding-form" formGroupName="educationInformation">
-            <lib-input
-              [inputType]="inputTypes.text"
-              [label]="'High School'"
-              [placeholder]="'Name of your high school'"
-            ></lib-input>
-            <lib-select
-              [selectStyle]="selectStyle.basic"
-              [label]="'Graduation Year'"
-              [placeholder]="'Select Year'"
-              [options]="graduationYearOptions"
-            ></lib-select>
-            <lib-input
-              [inputType]="inputTypes.number"
-              [label]="'GPA'"
-              [placeholder]="'e.g., 3.5'"
-            ></lib-input>
-            <lib-input
-              [inputType]="inputTypes.text"
-              [label]="'Intended Major'"
-              [placeholder]="'e.g., Computer Science'"
-            ></lib-input>
-            <lib-input
-              [inputType]="inputTypes.text"
-              [label]="'Secondary Major/Minor(Optional)'"
-              [placeholder]="'e.g., Mathematics'"
-            ></lib-input>
-            <lib-textarea
-              [inputType]="inputTypes.text"
-              [label]="'Extracurricular Activities'"
-              [placeholder]="
-                'Describe your extracurricular activities, achievements, or positions held'
+            <div
+              class="form-group"
+              *ngIf="form.get('educationInformation.school') as highSchool"
+            >
+              <lib-input
+                [inputType]="inputTypes.text"
+                [label]="'High School'"
+                [placeholder]="'Name of your high school'"
+                formControlName="school"
+                [invalid]="highSchool.invalid"
+              ></lib-input>
+              <ng-container *ngIf="highSchool.invalid">
+                @if (highSchool.errors?.['required']) {
+                <p class="error-message">High school is required.</p>
+                }
+              </ng-container>
+            </div>
+            <div
+              class="form-group"
+              *ngIf="
+                form.get(
+                  'educationInformation.graduationYear'
+                ) as graduationYear
               "
-            ></lib-textarea>
-            <div class="button-container">
-              <button
-                class="back-button"
-                pButton
-                severity="secondary"
-                label="Back"
-                (click)="prev()"
-              ></button>
-              <button
-                class="next-button"
-                pButton
-                severity="info"
-                label="Complete Registration"
-                (click)="next()"
-              >
-                <i class="pi pi-check-circle"></i>
-              </button>
+            >
+              <lib-select
+                [selectStyle]="selectStyle.basic"
+                [label]="'Graduation Year'"
+                [placeholder]="'Select Year'"
+                [options]="graduationYearOptions"
+                formControlName="graduationYear"
+                [invalid]="graduationYear.invalid"
+              ></lib-select>
+              <ng-container *ngIf="graduationYear.invalid">
+                @if (graduationYear.errors?.['required']) {
+                <p class="error-message">Graduation year is required.</p>
+                }
+              </ng-container>
+            </div>
+            <div
+              class="form-group"
+              *ngIf="form.get('educationInformation.gpa') as gpa"
+            >
+              <lib-input
+                [inputType]="inputTypes.number"
+                [label]="'GPA'"
+                [placeholder]="'e.g., 3.5'"
+                formControlName="gpa"
+                [invalid]="gpa.invalid"
+              ></lib-input>
+              <ng-container *ngIf="gpa.invalid">
+                @if (gpa.errors?.['required']) {
+                <p class="error-message">GPA is required.</p>
+                } @else if (gpa.errors?.['min'] || gpa.errors?.['max']) {
+                <p class="error-message">GPA must be between 0 and 4.0.</p>
+                }
+              </ng-container>
+            </div>
+            <div
+              class="form-group"
+              *ngIf="
+                form.get('educationInformation.intendedMajor') as intendedMajor
+              "
+            >
+              <lib-input
+                [inputType]="inputTypes.text"
+                [label]="'Intended Major'"
+                [placeholder]="'e.g., Computer Science'"
+                formControlName="intendedMajor"
+                [invalid]="intendedMajor.invalid"
+              ></lib-input>
+              <ng-container *ngIf="intendedMajor.invalid">
+                @if (intendedMajor.errors?.['required']) {
+                <p class="error-message">Intended major is required.</p>
+                } @else if (intendedMajor.errors?.['minlength']) {
+                <p class="error-message">
+                  Intended major must be at least 2 characters.
+                </p>
+                }
+              </ng-container>
+            </div>
+            <div
+              class="form-group"
+              *ngIf="
+                form.get(
+                  'educationInformation.secondaryMajor'
+                ) as secondaryMajor
+              "
+            >
+              <lib-input
+                [inputType]="inputTypes.text"
+                [label]="'Secondary Major/Minor(Optional)'"
+                [placeholder]="'e.g., Mathematics'"
+                formControlName="secondaryMajor"
+                [invalid]="secondaryMajor.invalid"
+              ></lib-input>
+              <ng-container *ngIf="secondaryMajor.invalid">
+                @if (secondaryMajor.errors?.['required']) {
+                <p class="error-message">Secondary major is required.</p>
+                } @else if (secondaryMajor.errors?.['minlength']) {
+                <p class="error-message">
+                  Secondary major must be at least 2 characters.
+                </p>
+                }
+              </ng-container>
+            </div>
+            <div
+              class="form-group"
+              *ngIf="
+                form.get(
+                  'educationInformation.extracurricularActivities'
+                ) as extracurricularActivities
+              "
+            >
+              <lib-textarea
+                [inputType]="inputTypes.text"
+                [label]="'Extracurricular Activities'"
+                [placeholder]="
+                  'Describe your extracurricular activities, achievements, or positions held'
+                "
+                formControlName="extracurricularActivities"
+                [invalid]="extracurricularActivities.invalid"
+              ></lib-textarea>
+              <div class="error-button-container">
+                <ng-container
+                  *ngTemplateOutlet="
+                    errorMessages;
+                    context: { errors: getFormErrors('educationInformation') }
+                  "
+                ></ng-container>
+                <div class="button-container">
+                  <button
+                    class="back-button"
+                    pButton
+                    severity="secondary"
+                    label="Back"
+                    (click)="prev()"
+                  ></button>
+                  <button
+                    class="next-button"
+                    pButton
+                    severity="info"
+                    label="Complete Registration"
+                    [disabled]="form.get('educationInformation')?.invalid"
+                    (click)="completeRegistration()"
+                  >
+                    <i class="pi pi-check-circle"></i>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
           } }
@@ -210,15 +418,15 @@
 </div>
 
 <!-- Display the summary of errors below the form -->
-<ng-template #errorMessages let-errors="errors">
-  @if (getFormErrors().length > 0 ) {
+<ng-template #errorMessages let-errors="errors" let-section="section">
+  @if (errors.length > 0) {
   <div class="error-summary">
     <p>
       <i class="pi pi-exclamation-circle"></i>
-      Please fix the following issues:
+      Please fix the following issues in {{ section | titlecase }}:
     </p>
     <ul>
-      @for (error of getFormErrors(); track error) {
+      @for (error of errors; track error) {
       <li>{{ error }}</li>
       }
     </ul>

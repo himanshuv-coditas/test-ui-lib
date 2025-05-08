@@ -47,13 +47,13 @@
       font-size: 0.9rem;
       padding: 0.5rem 1.5rem;
     }
-    .single-btn-container {
-      display: flex;
-      justify-content: end;
-    }
     .button-container {
       display: flex;
       justify-content: space-between;
+      margin: 1.5rem 0;
+      &.single-btn-container {
+        justify-content: end;
+      }
     }
     .error-summary {
       background-color: $danger-light-bg;
