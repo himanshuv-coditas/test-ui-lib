@@ -3,7 +3,7 @@ import { CardTypes, FieldTypes, InputTypes, onBoardingStep, Option, SelectStyle,
 import { ButtonModule } from 'primeng/button';
 import { UiCardComponent, UiInputComponent, UiTextareaComponent } from '../../../../../projects/ui-lib/src/public-api';
 import { StepsModule } from 'primeng/steps';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UiSelectComponent } from '../../../../../projects/ui-lib/src/lib/components/inputs/ui-select/ui-select.component';
 import { CommonModule } from '@angular/common';
 import { ErrorsService } from '../../services/errors/errors.service';
@@ -30,15 +30,11 @@ export class OnBoardingComponent {
         gender: ['', [Validators.required]],
         address: ['', [Validators.required, Validators.minLength(10)]],
       }),
-      educationInformation: this.fb.group({
-        school: ['', [Validators.required]],
-        graduationYear: ['', [Validators.required]],
-        gpa: ['', [Validators.required, Validators.min(0), Validators.max(4)]],
-        intendedMajor: ['', [Validators.required, Validators.minLength(2)]],
-        secondaryMajor: ['', [Validators.required, Validators.minLength(2)]],
-        extracurricularActivities: [''],
-      }),
+      educationInformation: this.fb.array([
+        this.createEducationFormGroup()
+      ]),
     });
+    console.log(this.form)
   }
   public onBoadingHeader: string = 'Student Onboarding';
   public onBoadingSubHeader: string = 'Create your student profile';
@@ -83,6 +79,10 @@ export class OnBoardingComponent {
   ];
   public activeIndex = signal(0);
 
+  get educationArray(): FormArray {
+    return this.form.get('educationInformation') as FormArray;
+  }
+
   next() {
     if (this.activeIndex() < this.steps.length - 1) {
       this.activeIndex.update((value) => value + 1);
@@ -107,5 +107,27 @@ export class OnBoardingComponent {
 
   completeRegistration() {
     alert('Onboarding completed successfully!');
+  }
+
+  createEducationFormGroup(): FormGroup {
+    return this.fb.group({
+      school: ['', [Validators.required]],
+      graduationYear: ['', [Validators.required]],
+      gpa: ['', [Validators.required, Validators.min(0), Validators.max(4)]],
+      intendedMajor: ['', [Validators.required, Validators.minLength(2)]],
+      secondaryMajor: ['', [Validators.required, Validators.minLength(2)]],
+      extracurricularActivities: [''],
+    });
+  }
+
+  addEducationEntry(): void {
+    let educationArray = this.form.get('educationInformation') as FormArray;
+    educationArray.push(this.createEducationFormGroup());
+  }
+
+  removeEducationEntry(index: number): void {
+    if (this.educationArray.length > 1) {
+      this.educationArray.removeAt(index);
+    }
   }
 }

@@ -98,8 +98,8 @@
                 class="next-button"
                 severity="info"
                 pButton
-                [disabled]="form.get('signUp')?.invalid"
                 label="Next"
+                [disabled]="form.get('signUp')?.invalid"
                 (click)="next()"
               ></button>
             </div>
@@ -257,159 +257,168 @@
             </div>
           </div>
           } @case (onBoardingStep.educationInformation) {
-          <div class="onboarding-form" formGroupName="educationInformation">
+          <div class="onboarding-form" formArrayName="educationInformation">
             <div
-              class="form-group"
-              *ngIf="form.get('educationInformation.school') as highSchool"
+              class="form-array-entry"
+              *ngFor="let education of educationArray.controls; let i = index"
+              [formGroupName]="i"
             >
-              <lib-input
-                [inputType]="inputTypes.text"
-                [label]="'High School'"
-                [placeholder]="'Name of your high school'"
-                formControlName="school"
-                [invalid]="highSchool.invalid"
-              ></lib-input>
-              <ng-container *ngIf="highSchool.invalid">
-                @if (highSchool.errors?.['required']) {
-                <p class="error-message">High school is required.</p>
-                }
-              </ng-container>
-            </div>
-            <div
-              class="form-group"
-              *ngIf="
-                form.get(
-                  'educationInformation.graduationYear'
-                ) as graduationYear
-              "
-            >
-              <lib-select
-                [selectStyle]="selectStyle.basic"
-                [label]="'Graduation Year'"
-                [placeholder]="'Select Year'"
-                [options]="graduationYearOptions"
-                formControlName="graduationYear"
-                [invalid]="graduationYear.invalid"
-              ></lib-select>
-              <ng-container *ngIf="graduationYear.invalid">
-                @if (graduationYear.errors?.['required']) {
-                <p class="error-message">Graduation year is required.</p>
-                }
-              </ng-container>
-            </div>
-            <div
-              class="form-group"
-              *ngIf="form.get('educationInformation.gpa') as gpa"
-            >
-              <lib-input
-                [inputType]="inputTypes.number"
-                [label]="'GPA'"
-                [placeholder]="'e.g., 3.5'"
-                formControlName="gpa"
-                [invalid]="gpa.invalid"
-              ></lib-input>
-              <ng-container *ngIf="gpa.invalid">
-                @if (gpa.errors?.['required']) {
-                <p class="error-message">GPA is required.</p>
-                } @else if (gpa.errors?.['min'] || gpa.errors?.['max']) {
-                <p class="error-message">GPA must be between 0 and 4.0.</p>
-                }
-              </ng-container>
-            </div>
-            <div
-              class="form-group"
-              *ngIf="
-                form.get('educationInformation.intendedMajor') as intendedMajor
-              "
-            >
-              <lib-input
-                [inputType]="inputTypes.text"
-                [label]="'Intended Major'"
-                [placeholder]="'e.g., Computer Science'"
-                formControlName="intendedMajor"
-                [invalid]="intendedMajor.invalid"
-              ></lib-input>
-              <ng-container *ngIf="intendedMajor.invalid">
-                @if (intendedMajor.errors?.['required']) {
-                <p class="error-message">Intended major is required.</p>
-                } @else if (intendedMajor.errors?.['minlength']) {
-                <p class="error-message">
-                  Intended major must be at least 2 characters.
-                </p>
-                }
-              </ng-container>
-            </div>
-            <div
-              class="form-group"
-              *ngIf="
-                form.get(
-                  'educationInformation.secondaryMajor'
-                ) as secondaryMajor
-              "
-            >
-              <lib-input
-                [inputType]="inputTypes.text"
-                [label]="'Secondary Major/Minor(Optional)'"
-                [placeholder]="'e.g., Mathematics'"
-                formControlName="secondaryMajor"
-                [invalid]="secondaryMajor.invalid"
-              ></lib-input>
-              <ng-container *ngIf="secondaryMajor.invalid">
-                @if (secondaryMajor.errors?.['required']) {
-                <p class="error-message">Secondary major is required.</p>
-                } @else if (secondaryMajor.errors?.['minlength']) {
-                <p class="error-message">
-                  Secondary major must be at least 2 characters.
-                </p>
-                }
-              </ng-container>
-            </div>
-            <div
-              class="form-group"
-              *ngIf="
-                form.get(
-                  'educationInformation.extracurricularActivities'
-                ) as extracurricularActivities
-              "
-            >
-              <lib-textarea
-                [inputType]="inputTypes.text"
-                [label]="'Extracurricular Activities'"
-                [placeholder]="
-                  'Describe your extracurricular activities, achievements, or positions held'
-                "
-                formControlName="extracurricularActivities"
-                [invalid]="extracurricularActivities.invalid"
-              ></lib-textarea>
-              <div class="error-button-container">
-                <ng-container
-                  *ngTemplateOutlet="
-                    errorMessages;
-                    context: { errors: getFormErrors('educationInformation') }
-                  "
-                ></ng-container>
-                <div class="button-container">
-                  <button
-                    class="back-button"
-                    pButton
-                    severity="secondary"
-                    label="Back"
-                    (click)="prev()"
-                  ></button>
-                  <button
-                    class="next-button"
-                    pButton
-                    severity="info"
-                    label="Complete Registration"
-                    [disabled]="form.get('educationInformation')?.invalid"
-                    (click)="completeRegistration()"
-                  >
-                    <i class="pi pi-check-circle"></i>
-                  </button>
-                </div>
+              <!-- Remove button at the top right -->
+              <div class="entry-header">
+                <h3>Education Entry #{{ i + 1 }}</h3>
+                <button
+                  type="button"
+                  class="remove-btn"
+                  (click)="educationArray.removeAt(i)"
+                  *ngIf="educationArray.length > 1"
+                >
+                  <i class="pi pi-trash"></i>
+                </button>
               </div>
+              <!-- High School -->
+              <div class="form-group">
+                <lib-input
+                  [inputType]="inputTypes.text"
+                  [label]="'High School'"
+                  [placeholder]="'Name of your high school'"
+                  formControlName="school"
+                  [invalid]="education.get('school')?.invalid || false"
+                ></lib-input>
+                <ng-container *ngIf="education.get('school')?.invalid">
+                  @if (education.get('school')?.errors?.['required']) {
+                  <p class="error-message">High school is required.</p>
+                  }
+                </ng-container>
+              </div>
+
+              <!-- Graduation Year -->
+              <div class="form-group">
+                <lib-select
+                  [selectStyle]="selectStyle.basic"
+                  [label]="'Graduation Year'"
+                  [placeholder]="'Select Year'"
+                  [options]="graduationYearOptions"
+                  formControlName="graduationYear"
+                  [invalid]="education.get('graduationYear')?.invalid || false"
+                ></lib-select>
+                <ng-container *ngIf="education.get('graduationYear')?.invalid">
+                  @if (education.get('graduationYear')?.errors?.['required']) {
+                  <p class="error-message">Graduation year is required.</p>
+                  }
+                </ng-container>
+              </div>
+
+              <!-- GPA -->
+              <div class="form-group">
+                <lib-input
+                  [inputType]="inputTypes.number"
+                  [label]="'GPA'"
+                  [placeholder]="'e.g., 3.5'"
+                  formControlName="gpa"
+                  [invalid]="education.get('gpa')?.invalid || false"
+                ></lib-input>
+                <ng-container *ngIf="education.get('gpa')?.invalid">
+                  @if (education.get('gpa')?.errors?.['required']) {
+                  <p class="error-message">GPA is required.</p>
+                  } @else if ( education.get('gpa')?.errors?.['min'] ||
+                  education.get('gpa')?.errors?.['max'] ) {
+                  <p class="error-message">GPA must be between 0 and 4.0.</p>
+                  }
+                </ng-container>
+              </div>
+
+              <!-- Intended Major -->
+              <div class="form-group">
+                <lib-input
+                  [inputType]="inputTypes.text"
+                  [label]="'Intended Major'"
+                  [placeholder]="'e.g., Computer Science'"
+                  formControlName="intendedMajor"
+                  [invalid]="education.get('intendedMajor')?.invalid || false"
+                ></lib-input>
+                <ng-container *ngIf="education.get('intendedMajor')?.invalid">
+                  @if (education.get('intendedMajor')?.errors?.['required']) {
+                  <p class="error-message">Intended major is required.</p>
+                  } @else if
+                  (education.get('intendedMajor')?.errors?.['minlength']) {
+                  <p class="error-message">
+                    Intended major must be at least 2 characters.
+                  </p>
+                  }
+                </ng-container>
+              </div>
+
+              <!-- Secondary Major -->
+              <div class="form-group">
+                <lib-input
+                  [inputType]="inputTypes.text"
+                  [label]="'Secondary Major/Minor(Optional)'"
+                  [placeholder]="'e.g., Mathematics'"
+                  formControlName="secondaryMajor"
+                  [invalid]="education.get('secondaryMajor')?.invalid || false"
+                ></lib-input>
+                <ng-container *ngIf="education.get('secondaryMajor')?.invalid">
+                  @if (education.get('secondaryMajor')?.errors?.['minlength']) {
+                  <p class="error-message">
+                    Secondary major must be at least 2 characters.
+                  </p>
+                  }
+                </ng-container>
+              </div>
+
+              <!-- Extracurricular Activities -->
+              <div class="form-group">
+                <lib-textarea
+                  [inputType]="inputTypes.text"
+                  [label]="'Extracurricular Activities'"
+                  [placeholder]="
+                    'Describe your extracurricular activities, achievements, or positions held'
+                  "
+                  formControlName="extracurricularActivities"
+                  [invalid]="
+                    education.get('extracurricularActivities')?.invalid || false
+                  "
+                ></lib-textarea>
+              </div>
+              <hr />
+            </div>
+
+            <!-- Add Entry Button -->
+            <div class="add-education-entry" (click)="addEducationEntry()">
+              <i class="pi pi-plus-circle icon"></i>
+              <span class="label">Add Another Education Entry</span>
+            </div>
+
+            <!-- Error Messages -->
+            <ng-container
+              *ngTemplateOutlet="
+                errorMessages;
+                context: { errors: getFormErrors('educationInformation') }
+              "
+            ></ng-container>
+
+            <!-- Navigation Buttons -->
+            <div class="button-container">
+              <button
+                class="back-button"
+                pButton
+                severity="secondary"
+                label="Back"
+                (click)="prev()"
+              ></button>
+              <button
+                class="next-button"
+                pButton
+                severity="info"
+                label="Complete Registration"
+                [disabled]="form.get('educationInformation')?.invalid"
+                (click)="completeRegistration()"
+              >
+                <i class="pi pi-check-circle"></i>
+              </button>
             </div>
           </div>
+
           } }
         </form>
       </div>
