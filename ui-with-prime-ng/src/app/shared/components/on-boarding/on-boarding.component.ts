@@ -1,21 +1,51 @@
 import { Component, signal } from '@angular/core';
-import { CardTypes, FieldTypes, InputTypes, onBoardingStep, Option, SelectStyle, StepType } from '../../../../../projects/ui-lib/src/lib/types/app';
+import {
+  CardTypes,
+  FieldTypes,
+  InputTypes,
+  onBoardingStep,
+  Option,
+  SelectStyle,
+  StepType,
+} from '../../../../../projects/ui-lib/src/lib/types/app';
 import { ButtonModule } from 'primeng/button';
-import { UiCardComponent, UiInputComponent, UiTextareaComponent } from '../../../../../projects/ui-lib/src/public-api';
+import {
+  UiCardComponent,
+  UiInputComponent,
+  UiTextareaComponent,
+} from '../../../../../projects/ui-lib/src/public-api';
 import { StepsModule } from 'primeng/steps';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { UiSelectComponent } from '../../../../../projects/ui-lib/src/lib/components/inputs/ui-select/ui-select.component';
 import { CommonModule } from '@angular/common';
 import { ErrorsService } from '../../services/errors/errors.service';
 
 @Component({
   selector: 'app-on-boarding',
-  imports: [UiCardComponent,CommonModule, UiSelectComponent, UiInputComponent, UiTextareaComponent, ButtonModule, StepsModule, ReactiveFormsModule],
+  imports: [
+    UiCardComponent,
+    CommonModule,
+    UiSelectComponent,
+    UiInputComponent,
+    UiTextareaComponent,
+    ButtonModule,
+    StepsModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './on-boarding.component.html',
-  styleUrl: './on-boarding.component.scss'
+  styleUrl: './on-boarding.component.scss',
 })
 export class OnBoardingComponent {
-  constructor(private fb: FormBuilder, private formValidationService: ErrorsService) {
+  constructor(
+    private fb: FormBuilder,
+    private formValidationService: ErrorsService
+  ) {
     this.form = this.fb.group({
       signUp: this.fb.group({
         email: ['', [Validators.required, Validators.email]],
@@ -26,15 +56,16 @@ export class OnBoardingComponent {
         firstName: ['', [Validators.required, Validators.minLength(2)]],
         lastName: ['', [Validators.required, Validators.minLength(2)]],
         phone: ['', [Validators.required, Validators.minLength(10)]],
-        dateOfBirth: ['', [Validators.required, this.formValidationService.minAgeValidator(16)]],
+        dateOfBirth: [
+          '',
+          [Validators.required, this.formValidationService.minAgeValidator(16)],
+        ],
         gender: ['', [Validators.required]],
         address: ['', [Validators.required, Validators.minLength(10)]],
       }),
-      educationInformation: this.fb.array([
-        this.createEducationFormGroup()
-      ]),
+      educationInformation: this.fb.array([this.createEducationFormGroup()]),
     });
-    console.log(this.form)
+    console.log(this.form);
   }
   public onBoadingHeader: string = 'Student Onboarding';
   public onBoadingSubHeader: string = 'Create your student profile';
@@ -67,15 +98,9 @@ export class OnBoardingComponent {
   ];
   form: FormGroup = new FormGroup({});
   steps: StepType[] = [
-    {
-      label: 'Sign Up'
-    },
-    {
-      label: 'Personal Information'
-    },
-    {
-      label: 'Personal Information'
-    },
+    { label: 'Sign Up', styleClass: '' },
+    { label: 'Personal Information', styleClass: '' },
+    { label: 'Education Information', styleClass: '' }
   ];
   public activeIndex = signal(0);
 
@@ -85,21 +110,27 @@ export class OnBoardingComponent {
 
   next() {
     if (this.activeIndex() < this.steps.length - 1) {
+      this.steps[this.activeIndex()].styleClass = 'completed';
       this.activeIndex.update((value) => value + 1);
     }
   }
 
   prev() {
     if (this.activeIndex() > 0) {
+      this.steps[this.activeIndex()].styleClass = ''; // Optional: clear current step class
       this.activeIndex.update((value) => value - 1);
     }
   }
 
-  onStepChange(event: any) {
-    console.warn(event);
-    this.activeIndex.set(event.index);
-  }
+  onStepChange(event: number) {
+    if (
+      event === onBoardingStep.educationInformation ||
+      event === onBoardingStep.personalInformation
+    ) {
 
+    }
+    this.activeIndex.set(event);
+  }
 
   getFormErrors(section: string) {
     return this.formValidationService.getFormErrors(this.form, section);

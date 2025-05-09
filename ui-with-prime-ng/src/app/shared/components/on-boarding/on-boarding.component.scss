@@ -1,4 +1,4 @@
-@import '../../../../../projects/ui-lib/src/lib/styles/variables';
+@import "../../../../../projects/ui-lib/src/lib/styles/variables";
 .onboarding-container {
   display: flex;
   justify-content: center;
@@ -10,7 +10,8 @@
         .p-card-body {
           border-radius: 10px;
           padding: 0;
-          .p-card-title, .p-card-subtitle {
+          .p-card-title,
+          .p-card-subtitle {
             background: $primary-light;
             padding: 1.5rem;
             border-radius: 1rem 1rem 0 0;
@@ -21,7 +22,7 @@
             }
             color: $white-color;
           }
-          .p-card-footer{
+          .p-card-footer {
             display: flex;
             align-items: center;
             .footer {
@@ -42,7 +43,8 @@
         margin-top: 0.5rem;
       }
     }
-    .next-button, .back-button {
+    .next-button,
+    .back-button {
       margin: 1rem 1rem;
       font-size: 0.9rem;
       padding: 0.5rem 1.5rem;
@@ -124,3 +126,39 @@
   }
 }
 
+::ng-deep {
+  .custom-steps {
+    .p-steps-list {
+      .p-steps-item {
+        &.completed {
+          .p-steps-item-link {
+            .p-steps-item-number {
+              background-color: $success-color;
+              color: white;
+              font-size: 0;
+
+              position: relative;
+
+              &::after {
+                content: "✔";
+                font-size: 0.875rem;
+                position: absolute;
+                top: 44%;
+                left: 77%;
+                transform: translate(-50%, -50%);
+                box-shadow: none;
+              }
+            }
+          }
+          &.p-steps-item-active {
+            .p-steps-item-link {
+              .p-steps-item-number {
+                background-color: $primary-dark;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

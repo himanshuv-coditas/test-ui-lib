@@ -147,6 +147,7 @@ export interface TableData {
 
 export interface StepType {
   label: string;
+  styleClass: string;
 }
 
 export enum onBoardingStep {

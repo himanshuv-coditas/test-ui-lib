@@ -52,9 +52,6 @@ export class UiTextareaComponent {
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    if (!this.value) {
-      return { required: true };
-    }
     return null;
   }
 }

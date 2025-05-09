@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   AbstractControl,
+  FormArray,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
@@ -101,7 +102,7 @@ export class ErrorsService {
       checkDirtyTouched: true,
     },
     {
-      path: 'educationInformation.school',
+      path: 'educationInformation[].school',
       label: 'High School',
       validations: {
         required: 'High school is required',
@@ -109,7 +110,7 @@ export class ErrorsService {
       checkDirtyTouched: true,
     },
     {
-      path: 'educationInformation.graduationYear',
+      path: 'educationInformation[].graduationYear',
       label: 'Graduation Year',
       validations: {
         required: 'Graduation year is required',
@@ -117,7 +118,7 @@ export class ErrorsService {
       checkDirtyTouched: true,
     },
     {
-      path: 'educationInformation.gpa',
+      path: 'educationInformation[].gpa',
       label: 'GPA',
       validations: {
         required: 'GPA is required',
@@ -127,7 +128,7 @@ export class ErrorsService {
       checkDirtyTouched: true,
     },
     {
-      path: 'educationInformation.intendedMajor',
+      path: 'educationInformation[].intendedMajor',
       label: 'Intended Major',
       validations: {
         required: 'Intended major is required',
@@ -136,7 +137,7 @@ export class ErrorsService {
       checkDirtyTouched: true,
     },
     {
-      path: 'educationInformation.secondaryMajor',
+      path: 'educationInformation[].secondaryMajor',
       label: 'Secondary Major/Minor',
       validations: {
         required: 'Secondary major is required',
@@ -148,27 +149,78 @@ export class ErrorsService {
 
   constructor() {}
 
+  // getFormErrors(form: FormGroup, section?: string): string[] {
+  //   return this.validationConfig.flatMap((config) => {
+  //     if (section && !config.path.startsWith(section)) return [];
+
+  //     const control = form.get(config.path);
+  //     if (!control || !control.errors) return [];
+  //     const shouldCheckTouchedDirty = config.checkDirtyTouched ?? true;
+  //     if (!shouldCheckTouchedDirty && !control.touched && !control.dirty)
+  //       return [];
+  //     return Object.entries(config.validations).flatMap(
+  //       ([errorKey, messageOrFn]) => {
+  //         if (errorKey === 'custom' && typeof messageOrFn === 'function') {
+  //           const msg = messageOrFn(control, form);
+  //           return msg ? [msg] : [];
+  //         }
+
+  //         return control.hasError(errorKey) ? [messageOrFn as string] : [];
+  //       }
+  //     );
+  //   });
+  // }
+
   getFormErrors(form: FormGroup, section?: string): string[] {
     return this.validationConfig.flatMap((config) => {
       if (section && !config.path.startsWith(section)) return [];
 
-      const control = form.get(config.path);
-      if (!control || !control.errors) return [];
-      const shouldCheckTouchedDirty = config.checkDirtyTouched ?? true;
-      if (!shouldCheckTouchedDirty && !control.touched && !control.dirty)
-        return [];
-      return Object.entries(config.validations).flatMap(
-        ([errorKey, messageOrFn]) => {
+      const isArrayPath = config.path.includes('[]');
+
+      if (isArrayPath) {
+        const [arrayName, controlName] = config.path.replace('[]', '').split('.');
+        const formArray = form.get(arrayName) as FormArray;
+        if (!formArray) return [];
+
+        return formArray.controls.flatMap((group, index) => {
+          const control = group.get(controlName);
+          if (!control || !control.errors) return [];
+
+          const shouldCheckTouchedDirty = config.checkDirtyTouched ?? true;
+          if (shouldCheckTouchedDirty && !control.touched && !control.dirty)
+            return [];
+
+          return Object.entries(config.validations).flatMap(([errorKey, messageOrFn]) => {
+            if (errorKey === 'custom' && typeof messageOrFn === 'function') {
+              const msg = messageOrFn(control, form);
+              return msg ? [`[Entry ${index + 1}] ${msg}`] : [];
+            }
+
+            return control.hasError(errorKey)
+              ? [`[Entry ${index + 1}] ${messageOrFn as string}`]
+              : [];
+          });
+        });
+      } else {
+        const control = form.get(config.path);
+        if (!control || !control.errors) return [];
+
+        const shouldCheckTouchedDirty = config.checkDirtyTouched ?? true;
+        if (shouldCheckTouchedDirty && !control.touched && !control.dirty)
+          return [];
+
+        return Object.entries(config.validations).flatMap(([errorKey, messageOrFn]) => {
           if (errorKey === 'custom' && typeof messageOrFn === 'function') {
             const msg = messageOrFn(control, form);
             return msg ? [msg] : [];
           }
 
           return control.hasError(errorKey) ? [messageOrFn as string] : [];
-        }
-      );
+        });
+      }
     });
   }
+
 
   public minAgeValidator(minAge: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
