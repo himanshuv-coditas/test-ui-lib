@@ -1,19 +1,5 @@
 import { Component, signal } from '@angular/core';
-import {
-  CardTypes,
-  FieldTypes,
-  InputTypes,
-  onBoardingStep,
-  Option,
-  SelectStyle,
-  StepType,
-} from '../../../../../projects/ui-lib/src/lib/types/app';
 import { ButtonModule } from 'primeng/button';
-import {
-  UiCardComponent,
-  UiInputComponent,
-  UiTextareaComponent,
-} from '../../../../../projects/ui-lib/src/public-api';
 import { StepsModule } from 'primeng/steps';
 import {
   FormArray,
@@ -22,9 +8,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { UiSelectComponent } from '../../../../../projects/ui-lib/src/lib/components/inputs/ui-select/ui-select.component';
 import { CommonModule } from '@angular/common';
-import { ErrorsService } from '../../services/errors/errors.service';
+import { UiSelectComponent } from '../../../../projects/ui-lib/src/lib/components/inputs/ui-select/ui-select.component';
+import { CardTypes, onBoardingStep, FieldTypes, InputTypes, StepType, Option, SelectStyle } from '../../../../projects/ui-lib/src/lib/types/app';
+import { UiCardComponent, UiInputComponent, UiTextareaComponent } from '../../../../projects/ui-lib/src/public-api';
+import { ErrorsService } from '../../shared/services/errors/errors.service';
 
 @Component({
   selector: 'app-on-boarding',

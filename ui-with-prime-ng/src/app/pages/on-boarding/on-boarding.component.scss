@@ -1,4 +1,4 @@
-@import "../../../../../projects/ui-lib/src/lib/styles/variables";
+@import '../../../../projects/ui-lib/src/lib/styles/variables';
 .onboarding-container {
   display: flex;
   justify-content: center;
@@ -130,15 +130,28 @@
   .custom-steps {
     .p-steps-list {
       .p-steps-item {
+        &.p-steps-item-active {
+          .p-steps-item-link {
+            .p-steps-item-number {
+              background-color: $primary-dark;
+              border-color: $primary-dark;
+              color: $primary-color;
+            }
+          }
+        }
         &.completed {
+          &::before {
+            background-color: $success-color;
+            border-color: $success-color;
+          }
           .p-steps-item-link {
             .p-steps-item-number {
               background-color: $success-color;
-              color: white;
+              border-color: $success-color;
+              color: $primary-color;
               font-size: 0;
 
               position: relative;
-
               &::after {
                 content: "✔";
                 font-size: 0.875rem;
@@ -151,10 +164,10 @@
             }
           }
           &.p-steps-item-active {
-            .p-steps-item-link {
-              .p-steps-item-number {
-                background-color: $primary-dark;
-              }
+            .p-steps-item-number {
+              background-color: $primary-dark;
+              border-color: $primary-dark;
+              color: $primary-color;
             }
           }
         }

@@ -5,10 +5,10 @@ import { InputsComponent } from './shared/components/inputs/inputs.component';
 import { ColorsComponent } from './shared/components/colors/colors.component';
 import { TypoComponent } from './shared/components/typo/typo.component';
 import { TableComponent } from './shared/components/table/table.component';
-import { OnBoardingComponent } from './shared/components/on-boarding/on-boarding.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { UiLibComponentComponent } from './shared/components/ui-lib-component/ui-lib-component.component';
 import { HomeComponent } from './pages/home/home.component';
+import { OnBoardingComponent } from './pages/on-boarding/on-boarding.component';
 export const routes: Routes = [
   {
     path: '',
