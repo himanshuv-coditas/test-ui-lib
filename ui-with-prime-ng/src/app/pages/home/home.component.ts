@@ -26,7 +26,6 @@ export class HomeComponent {
   public onBoadingSubHeader: string = 'Create your student profile';
 
   public setSelectedProject(project: string) {
-    console.log({project});
     this.selectedProject.set(project as Projects);
     localStorage.setItem('selectedProject', project);
   }

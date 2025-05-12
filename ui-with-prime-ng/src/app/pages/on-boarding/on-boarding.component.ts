@@ -53,7 +53,6 @@ export class OnBoardingComponent {
       }),
       educationInformation: this.fb.array([this.createEducationFormGroup()]),
     });
-    console.log(this.form);
   }
   public onBoadingHeader: string = 'Student Onboarding';
   public onBoadingSubHeader: string = 'Create your student profile';
