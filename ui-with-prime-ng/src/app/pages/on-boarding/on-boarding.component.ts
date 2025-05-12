@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { StepsModule } from 'primeng/steps';
 import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormGroup,
@@ -109,14 +110,23 @@ export class OnBoardingComponent {
     }
   }
 
-  onStepChange(event: number) {
-    if (
-      event === onBoardingStep.educationInformation ||
-      event === onBoardingStep.personalInformation
-    ) {
-
+  onStepChange(nextIndex: number) {
+    const stepFormGroups = [
+      this.form.get('signUp'),
+      this.form.get('personalInformation'),
+      this.form.get('educationInformation'),
+    ];
+    // Allow going back freely
+    if (nextIndex < this.activeIndex()) {
+      this.activeIndex.set(nextIndex);
+      return;
     }
-    this.activeIndex.set(event);
+    const currentFormGroup = stepFormGroups[this.activeIndex()] as AbstractControl;
+    if (currentFormGroup.invalid) {
+      currentFormGroup.markAllAsTouched();
+      return; // Stay on current step
+    }
+    this.activeIndex.set(nextIndex);
   }
 
   getFormErrors(section: string) {

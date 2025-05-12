@@ -8,7 +8,8 @@
       <div footer class="footer onboarding-content">
         <p-steps
           [model]="steps"
-          [(activeIndex)]="activeIndex"
+          [activeIndex]="activeIndex()"
+          (activeIndexChange)="onStepChange($event)"
           [readonly]="false"
           styleClass="custom-steps"
         ></p-steps>
