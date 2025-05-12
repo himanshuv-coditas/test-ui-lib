@@ -140,37 +140,12 @@ export class ErrorsService {
       path: 'educationInformation[].secondaryMajor',
       label: 'Secondary Major/Minor',
       validations: {
-        required: 'Secondary major is required',
-        minlength: 'Secondary major must be at least 2 characters',
+        required: 'Secondary major is required'
       },
       checkDirtyTouched: true,
     },
   ];
-
-  constructor() {}
-
-  // getFormErrors(form: FormGroup, section?: string): string[] {
-  //   return this.validationConfig.flatMap((config) => {
-  //     if (section && !config.path.startsWith(section)) return [];
-
-  //     const control = form.get(config.path);
-  //     if (!control || !control.errors) return [];
-  //     const shouldCheckTouchedDirty = config.checkDirtyTouched ?? true;
-  //     if (!shouldCheckTouchedDirty && !control.touched && !control.dirty)
-  //       return [];
-  //     return Object.entries(config.validations).flatMap(
-  //       ([errorKey, messageOrFn]) => {
-  //         if (errorKey === 'custom' && typeof messageOrFn === 'function') {
-  //           const msg = messageOrFn(control, form);
-  //           return msg ? [msg] : [];
-  //         }
-
-  //         return control.hasError(errorKey) ? [messageOrFn as string] : [];
-  //       }
-  //     );
-  //   });
-  // }
-
+  
   getFormErrors(form: FormGroup, section?: string): string[] {
     return this.validationConfig.flatMap((config) => {
       if (section && !config.path.startsWith(section)) return [];
@@ -186,8 +161,8 @@ export class ErrorsService {
           const control = group.get(controlName);
           if (!control || !control.errors) return [];
 
-          const shouldCheckTouchedDirty = config.checkDirtyTouched ?? true;
-          if (shouldCheckTouchedDirty && !control.touched && !control.dirty)
+          const shouldCheckTouchedDirty = config.checkDirtyTouched ?? true;          
+          if (shouldCheckTouchedDirty && (!control.touched || !control.dirty))
             return [];
 
           return Object.entries(config.validations).flatMap(([errorKey, messageOrFn]) => {
@@ -204,9 +179,7 @@ export class ErrorsService {
       } else {
         const control = form.get(config.path);
         if (!control || !control.errors) return [];
-
-        const shouldCheckTouchedDirty = config.checkDirtyTouched ?? true;
-        if (shouldCheckTouchedDirty && !control.touched && !control.dirty)
+        if (!control.touched || !control.dirty)
           return [];
 
         return Object.entries(config.validations).flatMap(([errorKey, messageOrFn]) => {

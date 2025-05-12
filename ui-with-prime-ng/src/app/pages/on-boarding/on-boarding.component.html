@@ -98,7 +98,7 @@
                 pButton
                 label="Next"
                 [disabled]="form.get('signUp')?.invalid"
-                (click)="next()"
+                (click)="onStepChange(onBoardingStep.personalInformation)"
               ></button>
             </div>
           </div>
@@ -113,9 +113,9 @@
                 [label]="'First Name'"
                 [placeholder]="'First Name'"
                 formControlName="firstName"
-                [invalid]="firstName.invalid"
+                [invalid]="firstName.invalid && firstName.touched"
               ></lib-input>
-              <ng-container *ngIf="firstName.invalid">
+              <ng-container *ngIf="firstName.invalid && firstName.touched">
                 @if (firstName.errors?.['required']) {
                 <p class="error-message">First name is required.</p>
                 } @else if (firstName.errors?.['minlength']) {
@@ -134,9 +134,9 @@
                 [label]="'Last Name'"
                 [placeholder]="'Last Name'"
                 formControlName="lastName"
-                [invalid]="lastName.invalid"
+                [invalid]="lastName.invalid && lastName.touched"
               ></lib-input>
-              <ng-container *ngIf="lastName.invalid">
+              <ng-container *ngIf="lastName.invalid && lastName.touched">
                 @if (lastName.errors?.['required']) {
                 <p class="error-message">Last name is required.</p>
                 } @else if (lastName.errors?.['minlength']) {
@@ -155,10 +155,10 @@
                 [label]="'Gender'"
                 [placeholder]="'Gender'"
                 formControlName="gender"
-                [invalid]="gender.invalid"
+                [invalid]="gender.invalid && gender.touched"
                 [options]="genderOptions"
               ></lib-select>
-              <ng-container *ngIf="gender.invalid">
+              <ng-container *ngIf="gender.invalid && gender.touched">
                 @if (gender.errors?.['required']) {
                 <p class="error-message">Gender is required.</p>
                 }
@@ -173,9 +173,9 @@
                 [label]="'Date of Birth'"
                 [placeholder]="'Date of Birth'"
                 formControlName="dateOfBirth"
-                [invalid]="dateOfBirth.invalid"
+                [invalid]="dateOfBirth.invalid && dateOfBirth.touched"
               ></lib-input>
-              <ng-container *ngIf="dateOfBirth.invalid">
+              <ng-container *ngIf="dateOfBirth.invalid && dateOfBirth.touched">
                 @if (dateOfBirth.errors?.['required']) {
                 <p class="error-message">Date of birth is required.</p>
                 } @else if (dateOfBirth.errors?.['minAge']) {
@@ -192,9 +192,9 @@
                 [label]="'Phone Number'"
                 [placeholder]="'Phone Number'"
                 formControlName="phone"
-                [invalid]="phoneNumber.invalid"
+                [invalid]="phoneNumber.invalid && phoneNumber.touched"
               ></lib-input>
-              <ng-container *ngIf="phoneNumber.invalid">
+              <ng-container *ngIf="phoneNumber.invalid && phoneNumber.touched">
                 @if (phoneNumber.errors?.['required']) {
                 <p class="error-message">Phone number is required.</p>
                 } @else if (phoneNumber.errors?.['minlength']) {
@@ -213,9 +213,9 @@
                 [label]="'Address'"
                 [placeholder]="'Address'"
                 formControlName="address"
-                [invalid]="address.invalid"
+                [invalid]="address.invalid && address.touched"
               ></lib-textarea>
-              <ng-container>
+              <ng-container *ngIf="address.invalid && address.touched">
                 @if (address.errors?.['required']) {
                 <p class="error-message">Address is required.</p>
                 } @else if (address.errors?.['minlength']) {
@@ -238,7 +238,7 @@
                   pButton
                   severity="secondary"
                   label="Back"
-                  (click)="prev()"
+                  (click)="onStepChange(onBoardingStep.signUp)"
                 ></button>
                 <button
                   class="next-button"
@@ -246,7 +246,7 @@
                   severity="info"
                   label="Next"
                   [disabled]="form.get('personalInformation')?.invalid"
-                  (click)="next()"
+                  (click)="onStepChange(onBoardingStep.educationInformation)"
                 ></button>
               </div>
             </div>
@@ -277,9 +277,9 @@
                   [label]="'High School'"
                   [placeholder]="'Name of your high school'"
                   formControlName="school"
-                  [invalid]="education.get('school')?.invalid || false"
+                  [invalid]="(education.get('school')?.invalid && education.get('school')?.touched) || false"
                 ></lib-input>
-                <ng-container *ngIf="education.get('school')?.invalid">
+                <ng-container *ngIf="education.get('school')?.invalid && education.get('school')?.touched">
                   @if (education.get('school')?.errors?.['required']) {
                   <p class="error-message">High school is required.</p>
                   }
@@ -294,9 +294,9 @@
                   [placeholder]="'Select Year'"
                   [options]="graduationYearOptions"
                   formControlName="graduationYear"
-                  [invalid]="education.get('graduationYear')?.invalid || false"
+                  [invalid]="(education.get('graduationYear')?.invalid && education.get('graduationYear')?.touched) || false"
                 ></lib-select>
-                <ng-container *ngIf="education.get('graduationYear')?.invalid">
+                <ng-container *ngIf="education.get('graduationYear')?.invalid && education.get('graduationYear')?.touched">
                   @if (education.get('graduationYear')?.errors?.['required']) {
                   <p class="error-message">Graduation year is required.</p>
                   }
@@ -310,9 +310,9 @@
                   [label]="'GPA'"
                   [placeholder]="'e.g., 3.5'"
                   formControlName="gpa"
-                  [invalid]="education.get('gpa')?.invalid || false"
+                  [invalid]="(education.get('gpa')?.invalid && education.get('gpa')?.touched) || false"
                 ></lib-input>
-                <ng-container *ngIf="education.get('gpa')?.invalid">
+                <ng-container *ngIf="education.get('gpa')?.invalid && education.get('gpa')?.touched">
                   @if (education.get('gpa')?.errors?.['required']) {
                   <p class="error-message">GPA is required.</p>
                   } @else if ( education.get('gpa')?.errors?.['min'] ||
@@ -329,9 +329,9 @@
                   [label]="'Intended Major'"
                   [placeholder]="'e.g., Computer Science'"
                   formControlName="intendedMajor"
-                  [invalid]="education.get('intendedMajor')?.invalid || false"
+                  [invalid]="(education.get('intendedMajor')?.invalid && education.get('intendedMajor')?.touched) || false"
                 ></lib-input>
-                <ng-container *ngIf="education.get('intendedMajor')?.invalid">
+                <ng-container *ngIf="education.get('intendedMajor')?.invalid && education.get('intendedMajor')?.touched">
                   @if (education.get('intendedMajor')?.errors?.['required']) {
                   <p class="error-message">Intended major is required.</p>
                   } @else if
@@ -347,16 +347,14 @@
               <div class="form-group">
                 <lib-input
                   [inputType]="inputTypes.text"
-                  [label]="'Secondary Major/Minor(Optional)'"
+                  [label]="'Secondary Major/Minor'"
                   [placeholder]="'e.g., Mathematics'"
                   formControlName="secondaryMajor"
-                  [invalid]="education.get('secondaryMajor')?.invalid || false"
+                  [invalid]="(education.get('secondaryMajor')?.invalid && education.get('secondaryMajor')?.touched) || false"
                 ></lib-input>
-                <ng-container *ngIf="education.get('secondaryMajor')?.invalid">
-                  @if (education.get('secondaryMajor')?.errors?.['minlength']) {
-                  <p class="error-message">
-                    Secondary major must be at least 2 characters.
-                  </p>
+                <ng-container *ngIf="education.get('secondaryMajor')?.invalid && education.get('secondaryMajor')?.touched">
+                  @if (education.get('secondaryMajor')?.errors?.['required']) {
+                  <p class="error-message">Secondary major is required.</p>
                   }
                 </ng-container>
               </div>
@@ -396,8 +394,8 @@
                 pButton
                 severity="secondary"
                 label="Back"
-                (click)="prev()"
-              ></button>
+                (click)="onStepChange(onBoardingStep.personalInformation)"
+                ></button>
               <button
                 class="next-button"
                 pButton
@@ -406,11 +404,10 @@
                 [disabled]="form.get('educationInformation')?.invalid"
                 (click)="completeRegistration()"
               >
-                <i class="pi pi-check-circle"></i>
-              </button>
-            </div>
+              <i class="pi pi-check-circle"></i>
+            </button>
           </div>
-
+          </div>
           } }
         </form>
       </div>
@@ -434,3 +431,6 @@
   </div>
   }
 </ng-template>
+
+
+<lib-toast></lib-toast>

@@ -155,3 +155,29 @@ export enum onBoardingStep {
   personalInformation = 1,
   educationInformation = 2
 }
+
+export interface OnBoardingForm {
+  signUp: SignUpForm;
+  personalInformation: PersonalInformationForm;
+  educationInformation: EducationInformationForm[];
+}
+
+export interface SignUpForm {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+export interface PersonalInformationForm {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  dateOfBirth: string;
+}
+export interface EducationInformationForm {
+  school: string;
+  graduationYear: string;
+  gpa: string;
+  intendedMajor: string;
+  secondaryMajor: string;
+  extracurricularActivities: string;
+}
