@@ -12,3 +12,4 @@ export * from './lib/components/inputs/ui-input/ui-input.component';
 export * from './lib/components/ui-form-fields/ui-form-fields.component';
 export * from './lib/components/ui-typography/ui-typography.component';
 export * from './lib/components/inputs/ui-textarea/ui-textarea.component';
+export * from './lib/components/ui-toast/ui-toast.component';
