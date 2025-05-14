@@ -5,6 +5,7 @@ import { TableData } from '../../types/app';
 @Component({
   selector: 'lib-table',
   imports: [TableModule],
+  standalone: true,
   templateUrl: './ui-table.component.html',
   styleUrl: './ui-table.component.scss',
 })

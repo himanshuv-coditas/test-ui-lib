@@ -1,31 +1,48 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { UiRadioComponent } from '../lib/components/inputs/ui-radio/ui-radio.component';
-import { RadioStyle, Option } from '../lib/types/app';
+import { Option, RadioStyle } from '../lib/types/app';
+
+const options: Option[] = [
+  { label: 'Option A', value: 'A' },
+  { label: 'Option B', value: 'B' },
+  { label: 'Option C', value: 'C' },
+];
 
 const meta: Meta<UiRadioComponent> = {
-  title: 'UI/Radio',
+  title: 'Ui/Radio',
   component: UiRadioComponent,
   tags: ['autodocs'],
+  argTypes: {
+    radioStyle: {
+      control: { type: 'select' },
+      options: Object.values(RadioStyle),
+    },
+    options: {
+      control: 'object',
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<UiRadioComponent>;
 
-const options: Option[] = [
-  { label: 'Option 1', value: '1' },
-  { label: 'Option 2', value: '2' },
-];
-
 export const Vertical: Story = {
   args: {
-    options,
     radioStyle: RadioStyle.vertical,
+    options,
   },
 };
 
 export const Horizontal: Story = {
   args: {
-    options,
     radioStyle: RadioStyle.horizontal,
+    options,
   },
-}; 
+};
+
+export const Disabled: Story = {
+  args: {
+    radioStyle: RadioStyle.disabled,
+    options,
+  },
+};

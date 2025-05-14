@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { UiTextareaComponent } from '../lib/components/inputs/ui-textarea/ui-textarea.component';
 
 const meta: Meta<UiTextareaComponent> = {
-  title: 'UI/Textarea',
+  title: 'Ui/Textarea',
   component: UiTextareaComponent,
   tags: ['autodocs'],
 };

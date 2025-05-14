@@ -1,28 +1,28 @@
 <div class="typography-container">
   @switch (tag) {
       @case (typography.h1) {
-        <h1 class="typography-style" [ngClass]="[variant, color, background]"><ng-content />{{label}}</h1>
+        <h1 class="typography-style" [ngClass]="[variant, color, background]">{{label}}</h1>
       }
     @case (typography.h2) {
-      <h2 class="typography-style" [ngClass]="[variant, color, background]"><ng-content />{{label}}</h2>
+      <h2 class="typography-style" [ngClass]="[variant, color, background]">{{label}}</h2>
     }
     @case (typography.h3) {
-      <h3 class="typography-style" [ngClass]="[variant, color, background]"><ng-content />{{label}}</h3>
+      <h3 class="typography-style" [ngClass]="[variant, color, background]">{{label}}</h3>
     }
     @case (typography.h4) {
-      <h4 class="typography-style" [ngClass]="[variant, color, background]"><ng-content />{{label}}</h4>
+      <h4 class="typography-style" [ngClass]="[variant, color, background]">{{label}}</h4>
     }
     @case (typography.h5) {
-     <h5 class="typography-style" [ngClass]="[variant, color, background]"><ng-content />{{label}}</h5>
+     <h5 class="typography-style" [ngClass]="[variant, color, background]">{{label}}</h5>
     }
     @case (typography.h6) {
-     <h6 class="typography-style" [ngClass]="[variant, color, background]"><ng-content />{{label}}</h6>
+     <h6 class="typography-style" [ngClass]="[variant, color, background]">{{label}}</h6>
    }
    @case (typography.subtitle) {
-     <span class="typography-style" [ngClass]="[variant, color, background]"><ng-content />{{label}}</span>
+     <span class="typography-style" [ngClass]="[variant, color, background]">{{label}}</span>
    }
   @default {
-     <p class="typography-style" [ngClass]="[variant, color, background]"><ng-content />{{label}}</p>
+     <p class="typography-style" [ngClass]="[variant, color, background]">{{label}}</p>
    }
   }
 </div>

@@ -108,6 +108,7 @@ export enum TypographyVariant {
   h4 = 'h4',
   h5 = 'h5',
   h6 = 'h6',
+  p = 'p',
   subtitle = 'subtitle',
   body = 'body',
   caption = 'caption',

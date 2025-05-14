@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, Input, Output, SimpleChanges } from '@angular/core';
 import { ButtonModule, ButtonSeverity } from 'primeng/button';
 import { ButtonSize, ButtonVariants } from '../../types/app';
 import { CommonModule } from '@angular/common';
@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'lib-button',
   imports: [ButtonModule, CommonModule, RouterModule],
+  standalone: true,
   templateUrl: './ui-button.component.html',
   styleUrl: './ui-button.component.scss'
 })
@@ -21,5 +22,10 @@ export class UiButtonComponent {
 
   onClick() {
     this.clickEmitter.emit(this.label);
+  }
+
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.warn('ngOnChanges', changes);
   }
 }
